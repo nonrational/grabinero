@@ -1,7 +1,6 @@
 source :rubygems
 
 gem 'sinatra'
-
 gem 'rerun'
 gem 'mysql2'
 gem 'activerecord'
@@ -9,6 +8,8 @@ gem 'sinatra-activerecord'
 gem 'bcrypt-ruby'
 gem 'rack-rewrite'
 gem 'mongo'
+gem 'mongoid'
+gem 'bson'
 gem 'bson_ext'
 
 group :development do
