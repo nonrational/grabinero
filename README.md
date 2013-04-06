@@ -6,15 +6,24 @@ NodeJS API
 ---------
 https://github.com/nanek/node-dwolla
 
+
+Getting Started
+--------
+Install dependencies
+
+    gem install bundle
+    bundle install
+
+
 Heroku Push to Production
 -------------------------
 We will use Heroku to get the website out to production. To do so, all you need to do is
 
 git push heroku master
 
-which will push all of your changes to the Heroku cloud. This will then get deployed automatically to 
+which will push all of your changes to the Heroku cloud. This will then get deployed automatically to
 
-centsyrup.herokuapp.com
+grabinero.herokuapp.com
 
 Sinatra Web Framework
 ---------------------
@@ -24,4 +33,4 @@ I use the Sinatra Web Framework for fast hackathon development. You can start th
 
 This will start a new instance on your localhost:4567
 
-The great thing about this is that when you make any changes to views or the back-end, the webapp will automatically restart. 
+The great thing about this is that when you make any changes to views or the back-end, the webapp will automatically restart.
