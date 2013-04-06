@@ -20,47 +20,67 @@ configure do
   end
 end
 
+
+before do
+  puts '[Params]'
+  p params
+end
+
 class Ask
-	include Mongoid::Document
-	field :item
-	field :pending
+  include Mongoid::Document
+  field :description, type: String
+  field :email, type: String
+  field :fulfillers, type: Array
+  field :pending, type: Boolean
+  field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
 end
 
-get '/asksave/:item' do
-	item = params[:item]
-	ask = Ask.new(:item => item, :pending => true)
-	ask.save
-
-	"Hello I want #{ask.item}"
+get '/ask' do
+  erb :_submit_ask
 end
 
-get '/askload/:item' do
-	load_item = params[:item]
-	ask = Ask.where(:item => load_item).first
+post '/ask/create' do
+  content_type :json
+  ask = Ask.create(
+    :description => params[:description],
+    :email => params[:email],
+    :pending => true,
+  )
 
-	"Hello I loaded #{ask.item}"
+  ask.to_json
+end
+
+get '/ask/all' do
+  erb :index, :locals => { :asks => Ask.where(:pending => true) }
+end
+
+get '/ask/:id' do
+  id = params[:id]
+  ask = Ask.find(id)
+
+  ask.to_json
 end
 
 helpers do
-    def exists(username)
-        if User.where(:username => username).first
-            return true
-        else
-            return false
-        end
+  def exists(username)
+    if User.where(:username => username).first
+      return true
+    else
+      return false
     end
+  end
 
-    def lesson_done(u_id)
-        if Lesson.where(:u_id => u_id).first
-            return true
-        else
-            return false
-        end
+  def lesson_done(u_id)
+    if Lesson.where(:u_id => u_id).first
+      return true
+    else
+      return false
     end
+  end
 
-    def login?
-        if session[:username].nil?
-            return false
+  def login?
+    if session[:username].nil?
+      return false
         else
             return true
         end
@@ -72,7 +92,7 @@ helpers do
 end
 
 get '/' do
-    erb :index
+  erb :index
 end
 
 get '/interview/:code' do

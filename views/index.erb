@@ -3,15 +3,17 @@
 <br/>
 <div class="container">
 	<div class="hero-unit">
-	  <h1>Hi there</h1>
-	  <img src="images/programming.png" height="260" width="260" align="right">        
-	  <hr color="#94D1CA">
-	  <p>Coderprep is the best way for coders to prep each other for interviews. Review common topics seen on coding interviews, track your progress on weak areas, and set up mock interviews with other coders. Take a demo mock interview here, explore our lessons, and sign up to track your progress.
-	  </p>
-    <br/>
-    <a class="btn btn-primary btn-large" href="/interview"> Prepare Now &raquo;</a>
-    <br/>
-    <br/>
+      <h1>Hi there </h1>
+      <hr color="#94D1CA">
+
+      <%= erb :_submit_ask %>
+      <% asks.each do |ask| %>
+        <%= erb :_ask, :layout => false, :locals => { :ask => ask } %>
+      <% end %>
+      <br/>
+      <a class="btn btn-primary btn-large" href="/interview"> Prepare Now &raquo;</a>
+      <br/>
+      <br/>
 	</div>
 
   <hr>
