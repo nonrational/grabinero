@@ -1,0 +1,62 @@
+<br/>
+<br/>
+<br/>
+<div class="container">
+	<div class="row">
+	  <div class="span12">
+	  	<h2>Stacks</h2>
+	  	<hr>
+	  	<div class="clearfix"></div>
+	  	<h3>The basics for interviews</h3>
+	  	<p>Stacks are a data structure that is used for storing and retrieving elements in Last-in First-out order.</p>
+	  	<img src="/images/stacks/stacks.png"/>
+	  	<br/>
+	  	<br/>
+	  	<p>There are three operations that a stack should generally have:</p>
+	  	<ol>
+	  		<li><i>push</i> - puts an element at the top of the stack</li>
+	  		<li><i>pop</i> - returns the topmost element of the stack and removed it from the data structure</li>
+	  		<li><i>peek</i> - same as pop but does not remove the element from the data structure</li>
+	  	</ol>
+	  	<p>*All of the above three operations are O(1)</p>
+	  	<br/>
+
+	  	<h3>Implementation</h3>
+	  	<p>The two most common ways to implement a stack is with a list or an array</p>
+	  	<ol>
+	  		<li><i>Linked List</i> - using a linked list you can implement push() by adding another node that points to the previous head, pop() & peek() by keeping track of the head of the list.</li>
+	  		<li><i>Array</i> - using an array you can implement push() by adding a new element to the first available index, pop() & peek() by keeping track of the current top of the stack i.e. the last index that has a value in the array.</li>
+	  	</ol>
+
+	  	<br/>
+	  	<p>Before moving on take the time to implement a stack using one of the above methods and save your progress.</p>
+	  	<div id="editor" style="height: 300px; width: 800px; float: top; position: relative;">Implement Stack Here</div>
+	  	<button class="btn">Save</button>
+	  	<br/>
+
+	  	<h3>Sample Interview Questions</h3>
+	  	<p>Besides being asked to implement a Stack or a variation of a Stack, there are a variety of questions that are easily solved with a stack. Typically these questions revolve around recursion through using a Stack or an operation that should happen in LIFO order. Try the following to get a better feel for Stacks.</p>
+
+	  	<p><b>1</b>. Implement a pre-order calculator. For example an input such as (+ 1 2 - 5) should be evaluated as (5 - (1 + 2)).</p>
+	  	<div id="editor_1" style="height: 300px; width: 800px; float: top; position: relative;">Implement Code Here</div>
+	  	<button class="btn">Save</button>
+	  	<br/>
+
+	  </div>
+	</div>
+  <hr>
+	<footer>
+	  <p>Developed by Don Yu & Jon Jia at Columbia's 2013 DevFest</p>
+	</footer>
+</div>
+
+<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+
+    var editor_1 = ace.edit("editor_1");
+    editor_1.setTheme("ace/theme/monokai");
+    editor_1.getSession().setMode("ace/mode/javascript");
+</script>

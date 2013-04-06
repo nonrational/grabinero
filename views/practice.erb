@@ -1,0 +1,42 @@
+<br/>
+<br/>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h2>Look for mock interviewers</h2>
+      <hr>
+      <div class="clearfix"></div>
+
+        <form class="form-search" onsubmit="return search();">
+					<label class="query" for="query_term">
+						<img alt="Icon-search" height="14" src="http://assets2.grouponcdn.com/images/icons/icon-search.png?RnKF9uZ7" width="14">
+					</label>
+            <label for="query_job">Interviewing For:</label>
+  					<input id="query_job" type="text" class="input-just search-query" placeholder="Google, Facebook, Amazon">
+ 					<button type="submit" class="btn">Search</button>
+				</form>
+
+      <div id="yelp_results" class="minions_body container">
+
+      </div>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <p>Developed by Don Yu & Jon Jia at Columbia's 2013 DevFest</p>
+  </footer>
+</div>
+
+<script>
+  function search() {
+    var search_string = $('#query_job').val();
+    var results = "<hr><br><div id=\"row_1\" class=\"row\"><div class=\"row\"><div class=\"span8\"><h4><strong><a href=\"#\">sbchou</a></strong></h4></div></div><div class=\"row\"><div class=\"span2\"><a href=\"#\" class=\"thumbnail\"><img src=\"/images/sophie.jpg\" alt=\"\"></a></div><div class=\"span6\"><p>Hi! I am an experienced hacker girl at Columbia University working at parse.ly right now.</p><p><a class=\"btn\" href=\"/interview/Me123Th\">Request Mock Interview</a></p></div></div></div>";
+    
+    if (search_string == "knewton") {
+          $("#yelp_results").html(results);
+    }
+
+    return false;
+  }
+</script>

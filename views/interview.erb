@@ -1,0 +1,88 @@
+<br/>
+<br/>
+<br/>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<h2>Mock Interview Demo (<%= @code %>)</h2>
+	  	<hr>
+	  	<div class="clearfix"></div>
+	  	
+	  	<div id="editor" style="height: 800px; width: 600px; float: left; position: relative;"></div>
+	  	<div class="span1"></div>
+	  	<div id="otherside" class="span4">
+	  		<p><b>Question</b> : Given a list of strings, output the anagrams in groups. How would you do this without first sorting each string?</p>
+	  		<br/>
+	  		<br/>
+	  		<button class="btn btn-success">Save session code</button>
+	  		<br/>
+	  		<p>*Save feature will save question & code for signed up users</p>
+	  		<br/>
+	  		<br/>
+		  	<p><b>Interviewee</b></p>
+		  	<div class="span4" id="myPublisherDiv"></div>
+		  	<br/>
+		  	<p><b>Interviewer</b></p>
+		  </div>
+	  </div>
+	</div>
+  <hr>
+	<footer>
+	  <p>Developed by Don Yu & Jon Jia at Columbia's 2013 DevFest</p>
+	</footer>
+</div>
+<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+</script>
+<script src='http://static.opentok.com/v0.91/js/TB.min.js'></script>
+<script>
+	// Initialize API key, session, and token...
+	// Think of a session as a room, and a token as the key to get in to the room
+	// Sessions and tokens are generated on your server and passed down to the client
+	var apiKey = "22854812";
+	var sessionId = "1_MX4yMjg1NDgxMn4xMjcuMC4wLjF-U2F0IEZlYiAwOSAwMDo1NDoyNiBQU1QgMjAxM34wLjYyNzU5NTI1fg";
+	var token = "T1==cGFydG5lcl9pZD0yMjg1NDgxMiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1lYTZiZGY4Y2RjODYxYjkwNGI1NDg1NjljYzIyMmQ4Mjc4MDZlZTkzOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDR5TWpnMU5EZ3hNbjR4TWpjdU1DNHdMakYtVTJGMElFWmxZaUF3T1NBd01EbzFORG95TmlCUVUxUWdNakF4TTM0d0xqWXlOelU1TlRJMWZnJmNyZWF0ZV90aW1lPTEzNjA0MDAxMDAmbm9uY2U9MC4zMTQ3NDUxNzgyNzc5ODY1NCZleHBpcmVfdGltZT0xMzYwNDg2NTAwJmNvbm5lY3Rpb25fZGF0YT0=";
+
+	// Initialize session, set up event listeners, and connect
+	var session = TB.initSession(sessionId);
+	session.addEventListener('sessionConnected', sessionConnectedHandler);
+	session.addEventListener('streamCreated', streamCreatedHandler);
+	session.connect(apiKey, token);
+	var publisher;
+	
+	function sessionConnectedHandler(event) {
+    // Put my webcam in a div
+    var publishProps = {height:198, width:246};
+    publisher = TB.initPublisher(apiKey, 'myPublisherDiv', publishProps);
+    // Subscribe to streams that were in the session when we connected
+    subscribeToStreams(event.streams);
+
+    // Send my stream to the session
+    session.publish(publisher);
+	}
+
+	function streamCreatedHandler(event) {
+    // Subscribe to any new streams that are created
+    subscribeToStreams(event.streams);
+  }
+
+  function subscribeToStreams(streams) {
+    for (var i = 0; i < streams.length; i++) {
+      // Make sure we don't subscribe to ourself
+      if (streams[i].connection.connectionId == session.connection.connectionId) {
+        return;
+      }
+
+      // Create the div to put the subscriber element in to
+      var div = document.createElement('otherPublisherDiv');
+      div.setAttribute('id', 'stream' + streams[i].streamId);
+      $("#otherside").append(div);
+
+      // Subscribe to the stream
+      session.subscribe(streams[i], div.id);
+    }
+  }
+</script>
