@@ -9,6 +9,7 @@ gem 'mongo'
 gem 'mongoid'
 gem 'bson'
 gem 'bson_ext'
+gem 'dwolla-ruby'
 
 
 group :development do
