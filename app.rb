@@ -10,6 +10,7 @@ require 'mongo'
 configure do
 	enable :sessions
 	set :public_folder, Proc.new { File.join(root, "public") }
+	# Mongoid.load!("mongoid.yml")
     Mongoid.configure do |config|
     config.sessions = { 
       :default => {
@@ -17,7 +18,7 @@ configure do
         :database => "grabinero"
       }
     }
-  end
+ 	end
 end
 
 
