@@ -23,7 +23,10 @@ git push heroku master
 
 which will push all of your changes to the Heroku cloud. This will then get deployed automatically to
 
-grabinero.herokuapp.com
+www.grabinero.com
+*Note that grabinero.com does not work yet (will fix this later)
+
+You will need to add the remote-url git@heroku.com:grabinero.git for heroku
 
 Sinatra Web Framework
 ---------------------
