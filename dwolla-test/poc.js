@@ -1,3 +1,5 @@
+// copy config from ../node/config.js
+
 var c = require('./config');
 var dwolla = require('../node/lib/dwolla');
 
