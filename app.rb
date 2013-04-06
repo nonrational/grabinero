@@ -11,25 +11,25 @@ require 'uri'
 configure :development do
 	enable :sessions
 	set :public_folder, Proc.new { File.join(root, "public") }
-	# Mongoid.load!("mongoid.yml")
-  #   Mongoid.configure do |config|
-  #   config.sessions = { 
-  #     :default => {
-  #       :hosts => "localhost:27017",
-  #       :database => "grabinero"
-  #     }
-  #   }
- 	# end
+	Mongoid.load!("mongoid.yml")
+    Mongoid.configure do |config|
+    config.sessions = { 
+      :default => {
+        :hosts => "localhost:27017",
+        :database => "grabinero"
+      }
+    }
+ 	end
 end
 
-# configure :production do
-# 	enable :sessions
-# 	set :public_folder, Proc.new { File.join(root, "public") }
-# 	uri  = URI.parse(ENV['MONGOLAB_URI'])
-# 	conn = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
-# 	db   = conn.db(uri.path.gsub(/^\//, ''))
-# 	db.collection_names.each { |name| puts name }
-# end
+configure :production do
+	enable :sessions
+	set :public_folder, Proc.new { File.join(root, "public") }
+	uri  = URI.parse(ENV['MONGOLAB_URI'])
+	conn = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
+	db   = conn.db(uri.path.gsub(/^\//, ''))
+	db.collection_names.each { |name| puts name }
+end
 
 before do
   puts '[Params]'
