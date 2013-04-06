@@ -10,4 +10,5 @@ use Rack::Rewrite do
   }
 end
 
+set :environment, :production
 run Sinatra::Application
