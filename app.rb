@@ -143,3 +143,32 @@ get '/logout' do
 	session[:username] = nil
 	redirect '/'
 end
+
+#
+# OAuth Callback
+#
+post '/dwolla/oauth' do
+    return reqlog('/dwolla/oauth', params)
+end
+
+#
+# Payment Information Callback
+#
+post '/dwolla/payment' do
+    return reqlog('/dwolla/payment', params)
+end
+
+#
+# Payment Success Callback
+#
+post '/dwolla/success' do
+    return reqlog('/dwolla/payment', params)
+end
+
+#
+# Request and Log
+#
+def reqlog(path, params)
+    logger.info("#{path} #{params}")
+    return "#{path} #{params}"
+end
