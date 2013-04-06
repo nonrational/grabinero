@@ -4,6 +4,8 @@ require 'sinatra/activerecord'
 require 'bcrypt'
 require 'yaml'
 require 'base64'
+require 'mongoid'
+require 'mongo'
 
 configure do
   enable :sessions
