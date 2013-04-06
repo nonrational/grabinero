@@ -1,4 +1,5 @@
 source :rubygems
+ruby '1.9.3'
 
 gem 'sinatra'
 gem 'rb-fsevent'
@@ -10,7 +11,6 @@ gem 'mongoid'
 gem 'bson'
 gem 'bson_ext'
 gem 'faraday'
-
 
 group :development do
 	gem 'shotgun'
