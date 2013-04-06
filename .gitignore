@@ -1,1 +1,10 @@
-*.lock
+Gemfile.lock
+.listen_test
+
+#vim
+*.swo
+*.swp
+*~
+
+
+.DS_Store
