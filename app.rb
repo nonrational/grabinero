@@ -52,7 +52,7 @@ post '/ask/create' do
 end
 
 get '/ask/all' do
-  erb :index, :locals => { :asks => Ask.where(:pending => true) }
+  erb :asks, :locals => { :asks => Ask.where(:pending => true) }
 end
 
 get '/ask/:id' do
