@@ -12,14 +12,14 @@ configure :development do
 	enable :sessions
 	set :public_folder, Proc.new { File.join(root, "public") }
 	# Mongoid.load!("mongoid.yml")
-    Mongoid.configure do |config|
-    config.sessions = { 
-      :default => {
-        :hosts => "localhost:27017",
-        :database => "grabinero"
-      }
-    }
- 	end
+  #   Mongoid.configure do |config|
+  #   config.sessions = { 
+  #     :default => {
+  #       :hosts => "localhost:27017",
+  #       :database => "grabinero"
+  #     }
+  #   }
+ 	# end
 end
 
 # configure :production do
