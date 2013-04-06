@@ -1,3 +1,6 @@
 [submodule "ruby"]
 	path = ruby
 	url = https://github.com/Dwolla/dwolla-ruby
+[submodule "node"]
+	path = node
+	url = https://github.com/nanek/node-dwolla
