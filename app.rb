@@ -9,7 +9,6 @@ require 'mongo'
 require 'uri'
 require './ruby/lib/dwolla-ruby.rb'
 require 'pp'
-#require 'dwolla'
 
 # REAL API ACCESS KEYS
 APP_KEY   ="2vezPKWMkzzQC6vC1u+OPYED/fVxO1JTh2mNqljiDk6nB4so4c"
@@ -17,8 +16,8 @@ APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
 
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
-# REDIRECT_URL="http://localhost:4567/dwolla/oauth"
-REDIRECT_URL="http://www.grabinero.com/dwolla/oauth"
+REDIRECT_URL="http://localhost:4567/dwolla/oauth"
+# REDIRECT_URL="http://www.grabinero.com/dwolla/oauth"
 
 class Ask
   include Mongoid::Document
