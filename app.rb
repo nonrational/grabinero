@@ -17,8 +17,8 @@ APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
 
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
-REDIRECT_URL="http://localhost:4567/dwolla/oauth"
-# REDIRECT_URL="http://www.gra/dwolla/oauth"
+# REDIRECT_URL="http://localhost:4567/dwolla/oauth"
+REDIRECT_URL="http://www.grabinero.com/dwolla/oauth"
 
 class Ask
   include Mongoid::Document
