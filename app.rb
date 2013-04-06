@@ -7,6 +7,15 @@ require 'base64'
 require 'mongoid'
 require 'mongo'
 
+class Ask
+  include Mongoid::Document
+  field :description, type: String
+  field :email, type: String
+  field :fulfillers, type: Array
+  field :pending, type: Boolean
+  field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
+end
+
 configure do
 	enable :sessions
 	set :public_folder, Proc.new { File.join(root, "public") }
@@ -21,20 +30,11 @@ configure do
  	end
 end
 
-
 before do
   puts '[Params]'
   p params
 end
 
-class Ask
-  include Mongoid::Document
-  field :description, type: String
-  field :email, type: String
-  field :fulfillers, type: Array
-  field :pending, type: Boolean
-  field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
-end
 
 get '/ask' do
   erb :_submit_ask
@@ -51,14 +51,21 @@ post '/ask/create' do
   ask.to_json
 end
 
-get '/ask/all' do
+
+get '/ask/show/all' do
+  erb :asks, :locals => { :asks => Ask.all }
+end
+get '/ask/show/pending' do
   erb :asks, :locals => { :asks => Ask.where(:pending => true) }
 end
+get '/ask/show/:id' do |id|
+  erb :ask, :locals => { :ask => Ask.find(id) }
+end
 
-get '/ask/:id' do
-  id = params[:id]
+
+
+get '/ask/:id' do |id|
   ask = Ask.find(id)
-
   ask.to_json
 end
 
