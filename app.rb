@@ -30,7 +30,6 @@ end
 configure :development do
 	enable :sessions
 	set :public_folder, Proc.new { File.join(root, "public") }
-	Mongoid.load!("mongoid.yml")
     Mongoid.configure do |config|
     config.sessions = {
       :default => {
