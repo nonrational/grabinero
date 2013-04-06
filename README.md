@@ -28,6 +28,9 @@ www.grabinero.com
 
 You will need to add the remote-url git@heroku.com:grabinero.git for heroku
 
+(Debugging Heroku)
+Errors on Heroku can be seen by running the command "heroku logs", for environment errors you should run "heroku restart" and then "heroku logs" to see if there errors with the environment
+
 Sinatra Web Framework
 ---------------------
 I use the Sinatra Web Framework for fast hackathon development. You can start the webapp by simply running
