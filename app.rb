@@ -8,8 +8,8 @@ require 'mongoid'
 require 'mongo'
 
 configure do
-  enable :sessions
-  set :public_folder, Proc.new { File.join(root, "public") }
+	enable :sessions
+	set :public_folder, Proc.new { File.join(root, "public") }
     Mongoid.configure do |config|
     config.sessions = { 
       :default => {
@@ -20,13 +20,26 @@ configure do
   end
 end
 
-#class User < ActiveRecord::Base
-#attr_accessible :id, :username, :pass_salt, :pass_hash
-#end
+class Ask
+	include Mongoid::Document
+	field :item
+	field :pending
+end
 
-#class Lesson < ActiveRecord::Base
-#attr_accessible :id, :u_id, :name, :progress
-#end
+get '/asksave/:item' do
+	item = params[:item]
+	ask = Ask.new(:item => item, :pending => true)
+	ask.save
+
+	"Hello I want #{ask.item}"
+end
+
+get '/askload/:item' do
+	load_item = params[:item]
+	ask = Ask.where(:item => load_item).first
+
+	"Hello I loaded #{ask.item}"
+end
 
 helpers do
     def exists(username)
