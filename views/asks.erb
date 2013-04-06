@@ -1,4 +1,3 @@
-<%= erb :_submit_ask %>
 <% asks.each do |ask| %>
   <%= erb :_ask, :layout => false, :locals => { :ask => ask } %>
 <% end %>

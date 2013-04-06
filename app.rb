@@ -11,8 +11,8 @@ class Ask
   include Mongoid::Document
   field :description, type: String
   field :email, type: String
-  field :fulfillers, type: Array
-  field :pending, type: Boolean
+  field :fulfiller, type: String
+  field :state, type: Integer
   field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
 end
 
@@ -41,33 +41,40 @@ get '/ask' do
 end
 
 post '/ask/create' do
-  content_type :json
   ask = Ask.create(
     :description => params[:description],
     :email => params[:email],
     :pending => true,
   )
-
-  ask.to_json
+  redirect '/ask/show/pending'
 end
 
 
 get '/ask/show/all' do
-  erb :asks, :locals => { :asks => Ask.all }
+  erb :asks, :locals => { :asks => Ask.order_by([[:createdDateTime, :desc]]) }
 end
 get '/ask/show/pending' do
-  erb :asks, :locals => { :asks => Ask.where(:pending => true) }
+  erb :asks, :locals => { :asks => Ask.where(:pending => true).order_by([[:createdDateTime, :desc]]) }
 end
 get '/ask/show/:id' do |id|
   erb :ask, :locals => { :ask => Ask.find(id) }
 end
-
-
-
 get '/ask/:id' do |id|
   ask = Ask.find(id)
   ask.to_json
 end
+delete 'ask/:id' do |id|
+  Ask.find(id).destroy
+end
+
+post 'ask/:id/fulfill' do |id|
+  #content_type :json  
+  ask = Ask.find(id)
+  if params[:email] then ask.add_to_set(params[:email]) end
+  #ask.to_json
+  erb :asks, :locals => { :asks => Ask.where(:pending => true) }
+end
+
 
 helpers do
   def exists(username)
