@@ -8,6 +8,7 @@ require 'mongoid'
 require 'mongo'
 require 'uri'
 require './ruby/lib/dwolla-ruby.rb'
+require 'pp'
 #require 'dwolla'
 
 # REAL API ACCESS KEYS
@@ -17,6 +18,7 @@ APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
 REDIRECT_URL="http://localhost:4567/dwolla/oauth"
+# REDIRECT_URL="http://www.gra/dwolla/oauth"
 
 class Ask
   include Mongoid::Document
@@ -217,8 +219,11 @@ get '/logout' do
     redirect '/'
 end
 
+# Print the currently OAuth'd user's name
 get '/dwolla/demo' do
-    "Token: #{session[:dwolla_token]}"
+    DwollaUser = Dwolla::User.me(session[:dwolla_token])
+    DwollaUser.fetch
+    "Name #{DwollaUser.name}"
 end
 
 #
@@ -235,8 +240,10 @@ get '/dwolla/oauth' do
     logger.info(code)
     token = DwollaClient.request_token(code, REDIRECT_URL)
     logger.info(token)
-    #session[:dwolla_token] = token
-    #{}"Session #{session[:dwolla_token]}"
+    session[:dwolla_token] = token
+    "Session #{session[:dwolla_token]}"
+
+    redirect "/"
 end
 
 #
