@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'sinatra'
 
+gem 'rerun'
 gem 'mysql2'
 gem 'activerecord'
 gem 'sinatra-activerecord'
