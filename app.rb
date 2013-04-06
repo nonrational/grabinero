@@ -7,6 +7,16 @@ require 'base64'
 require 'mongoid'
 require 'mongo'
 require 'uri'
+require './ruby/lib/dwolla-ruby.rb'
+#require 'dwolla'
+
+# REAL API ACCESS KEYS
+APP_KEY   ="2vezPKWMkzzQC6vC1u+OPYED/fVxO1JTh2mNqljiDk6nB4so4c"
+APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
+
+DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
+
+REDIRECT_URL="http://localhost:4567/dwolla/oauth"
 
 class Ask
   include Mongoid::Document
@@ -22,13 +32,19 @@ configure :development do
 	set :public_folder, Proc.new { File.join(root, "public") }
 	Mongoid.load!("mongoid.yml")
     Mongoid.configure do |config|
-    config.sessions = { 
+    config.sessions = {
       :default => {
         :hosts => ["localhost:27017"],
         :database => "grabinero"
       }
     }
  	end
+
+end
+
+get '/testing' do
+    authUrl = DwollaClient.auth_url(REDIRECT_URL)
+    "To authorized, go <a target='_blank' href=\"#{authUrl}\">here</a>."
 end
 
 configure :production do
@@ -78,7 +94,7 @@ delete 'ask/:id' do |id|
 end
 
 post 'ask/:id/fulfill' do |id|
-  #content_type :json  
+  #content_type :json
   ask = Ask.find(id)
   if params[:email] then ask.add_to_set(params[:email]) end
   #ask.to_json
@@ -201,11 +217,26 @@ get '/logout' do
     redirect '/'
 end
 
+get '/dwolla/demo' do
+    "Token: #{session[:dwolla_token]}"
+end
+
 #
 # OAuth Callback
 #
-post '/dwolla/oauth' do
-    return reqlog('/dwolla/oauth', params)
+get '/dwolla/oauth' do
+    # if we have an error param OR we don't have an access token param...
+    if !params[:error].nil? or params[:code].nil? then
+        logger.error("Bad OAuth Request")
+        return "Oh Noes! Bad times. #{params}"
+    end
+
+    code = params['code']
+    logger.info(code)
+    token = DwollaClient.request_token(code, REDIRECT_URL)
+    logger.info(token)
+    #session[:dwolla_token] = token
+    #{}"Session #{session[:dwolla_token]}"
 end
 
 #
