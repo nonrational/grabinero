@@ -58,6 +58,7 @@ textarea {
     width: 90%;
     max-width: 1026px;
     margin: 50px 5%;
+    position: relative;
 }
 
 /* ===================

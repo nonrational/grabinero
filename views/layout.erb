@@ -22,8 +22,7 @@
         <![endif]-->
 
         <header class="wrapper clearfix">
-
-            <h1 class="logo">Grabinero</h1>
+            <a href="/"><h1 class="logo">Grabinero</h1></a>
             <% if session[:dwolla_token] != nil then %>
             <div class="auth">Hi, <%= session[:name] %>! <form action='/logout' method='GET'><button>Log Out</button></form></div>
             <% else %>
@@ -31,7 +30,7 @@
             <% end %>
             <nav>
                 <ul>
-                    <li><a href="#" onclick="return false;" class="askopen">While you're out!</a></li>
+                    <li><a href="#" onclick="return false;" class="askopen">While you're out?</a></li>
                     <li><a href="#" onclick="return false;" class="solicitopen">I'm going out!</a></li>
                 </ul>
             </nav>

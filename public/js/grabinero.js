@@ -4,12 +4,14 @@ $(document).ready(function(){
     $('.askopen').click( function() {
         $('.askform').slideToggle();
         $('.solicitform').slideUp();
-
+        //these are for fading out the table, doesn't work properly
+        //$('article.main').toggleClass('fadeout');
     });
     $('.solicitform').hide();
     $('.solicitopen').click( function() {
         $('.solicitform').slideToggle();
         $('.askform').slideUp();
+        //$('article.main').toggleClass('fadeout');
     });
 
     //show/hide action buttons
