@@ -24,8 +24,10 @@ $(document).ready(function(){
     $('.requesteditems .promised .dropdown').hide();
     $('.requesteditems .promised .action').click( function(e) {
         $(e.currentTarget).parent().find('.dropdown').slideDown();
-        //console.log(e.currentTarget);
-
     });
 
+    $('.finish-send').click(function(e){
+        e.preventDefault();
+        window.open($(e.currentTarget).data('url'));
+    });
 });

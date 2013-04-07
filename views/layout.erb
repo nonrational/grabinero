@@ -31,8 +31,8 @@
             <% end %>
             <nav>
                 <ul>
-                    <li><a href="#" onclick="return false;" class="askopen">While you're out!</a></li>
-                    <li><a href="#" onclick="return false;" class="solicitopen">I'm going out!</a></li>
+                    <li><a href="#" onclick="return false;" class="<%= session[:dwolla_token] != nil ? 'askopen' : '' %>">While you're out!</a></li>
+                    <li><a href="#" onclick="return false;" class="<%= session[:dwolla_token] != nil ? 'solicitopen' : '' %>">I'm going out!</a></li>
                 </ul>
             </nav>
             <form action="/ask" method="POST" class="dropdown askform">

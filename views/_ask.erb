@@ -14,18 +14,18 @@
     <% end %>
 </p>
 
-<% if $state[ask.state] == :pending %>
+<% if $state[ask.state] == :pending and ask.creatorId != session[:dwolla_id] %>
     <form action="/ask/<%= ask._id %>/promise" method="POST"><button class="action">I got it</button></form>
-<% elsif $state[ask.state] == :promised %>
+<% elsif $state[ask.state] == :promised and ask.responderId == session[:dwolla_id] %>
     <button class="action">Here you go</button>
-    <form action="" method="POST" class="dropdown">
+    <form action="/ask/<%= ask._id %>/fulfill" method="POST" class="dropdown">
         <p>Came to</p>
         <input type="text" name="amount" placeholder="(amount)">
         <p>all told.</p>
         <button type="submit">OK!</button>
     </form>
-<% elsif $state[ask.state] == :fulfilled %>
-    <button class="action">Thanks!</button>
+<% elsif $state[ask.state] == :fulfilled and ask.creatorId == session[:dwolla_id] %>
+    <button class="action finish-send" data-url="https://www.dwolla.com/send?request=<%= ask.transactionId %>">Thanks!</button>
 <% else %>
     <!-- noop -->
 <% end %>
