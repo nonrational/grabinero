@@ -233,6 +233,9 @@ table, .requesteditems {
 		.action {
 			@include basic-gradient ($main-lt, $main);
 			@include knockout-text;
+			&.disabled {
+			    @include basic-gradient ($ltgray, $mdgray);
+		    }
 		}
 	}
 	tr.fulfilled {

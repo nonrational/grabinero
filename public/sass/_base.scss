@@ -125,7 +125,10 @@ $fontstack: 'MuseoSlab', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 	@include box-shadow(0 1px 5px rgba(0,0,0,.3), inset 0 -1px 0 rgba(0,0,0,.4), inset 0 1px 0 0 rgba(lighten($accent-lt, 50%), .75)); // drop shadow and inner shadow
 	&:hover {
 		color: $main-lt;
-	};
+	}
+  &.disabled {
+    @include basic-gradient ($ltgray, $mdgray);
+  }
 }
 
 @mixin input-fields () {
