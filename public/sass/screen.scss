@@ -24,7 +24,7 @@ body {
 	min-width: 320px;
     //overflow: hidden;
 	//margin: 50px 0;
-	padding: 0 0 200px;
+	padding: 0 0 300px;
 	font-family: $fontstack;
 	font-weight: normal;
 	font-style: normal;
@@ -137,7 +137,7 @@ nav {
 .dropdown {
 	width: 38%;
 	padding: 5%;
-	//float: left;
+	display: none;
 	@include retina-bg('form-bg', 'png', 15px, 1000px);
 	background-color: lighten($main-lt, 10%);
 	background-repeat: repeat-x;

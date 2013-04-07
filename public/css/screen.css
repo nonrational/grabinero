@@ -109,7 +109,7 @@ body {
   background-image: -o-linear-gradient(bottom, #002457 0%, #00508a 100%);
   background-image: linear-gradient(bottom, #002457 0%, #00508a 100%);
   min-width: 320px;
-  padding: 0 0 200px;
+  padding: 0 0 300px;
   font-family: "MuseoSlab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: normal;
   font-style: normal;
@@ -360,6 +360,7 @@ nav li a {
 .dropdown {
   width: 38%;
   padding: 5%;
+  display: none;
   background-image: url("/images/form-bg.png");
   background-repeat: no-repeat;
   background-color: #006ebd;
