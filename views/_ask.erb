@@ -15,7 +15,11 @@
 </p>
 
 <% if $state[ask.state] == :pending and ask.creatorId != session[:dwolla_id] %>
-    <form action="/ask/<%= ask._id %>/promise" method="POST"><button class="action">I got it</button></form>
+    <% if ask.ask %>
+    <form action="/ask/<%= ask._id %>/promise" method="POST"></form>
+    <% else %>
+        <button class="action disabled">Pick me up a</button>
+    <% end %>
 <% elsif $state[ask.state] == :promised and ask.responderId == session[:dwolla_id] %>
     <button class="action">Here you go</button>
     <form action="/ask/<%= ask._id %>/fulfill" method="POST" class="dropdown">
