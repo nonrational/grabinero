@@ -198,7 +198,7 @@ nav {
 		p {
 			//@include opacity(0.5);
 		}
-		.pending {
+		.action {
 			@include basic-gradient ($main-lt, $main);
 			@include knockout-text;
 		}

@@ -452,7 +452,7 @@ input .dropdown .optional {
   background-color: #f0f6ff;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003201}}
-.requesteditems tr.promised .pending {
+.requesteditems tr.promised .action {
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF00508A', endColorstr='#FF002457');
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #00508a), color-stop(100%, #002457));
@@ -465,7 +465,7 @@ input .dropdown .optional {
   text-decoration: none;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000387}}
-.requesteditems tr.promised .pending a:hover, button:hover .requesteditems tr.promised .pending {
+.requesteditems tr.promised .action a:hover, button:hover .requesteditems tr.promised .action {
   color: #bdd8ff;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003206}}
