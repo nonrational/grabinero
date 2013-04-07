@@ -7,12 +7,12 @@ require 'base64'
 require 'mongoid'
 require 'mongo'
 require 'uri'
+require 'pp'
 require './ruby/lib/dwolla-ruby.rb'
-#require 'dwolla'
+require "./siteconfig.rb"
 
-# REAL API ACCESS KEYS
-APP_KEY   ="2vezPKWMkzzQC6vC1u+OPYED/fVxO1JTh2mNqljiDk6nB4so4c"
-APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
+get '/'   do erb :index end
+not_found do erb :error end
 
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
@@ -38,186 +38,94 @@ configure :development do
       }
     }
  	end
-
 end
 
-get '/testing' do
-    authUrl = DwollaClient.auth_url(REDIRECT_URL)
-    "To authorized, go <a target='_blank' href=\"#{authUrl}\">here</a>."
-end
-
-configure :production do
-	enable :sessions
-	set :public_folder, Proc.new { File.join(root, "public") }
-	uri  = URI.parse(ENV['MONGOLAB_URI'])
-	conn = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
-	db   = conn.db(uri.path.gsub(/^\//, ''))
-	db.collection_names.each { |name| puts name }
-end
-
-before do
-  puts '[Params]'
-  p params
-end
-
-
-get '/ask' do
-  erb :_submit_ask
-end
-
-post '/ask/create' do
-  ask = Ask.create(
-    :description => params[:description],
-    :email => params[:email],
-    :pending => true,
-  )
-  redirect '/ask/show/pending'
-end
-
-
-get '/ask/show/all' do
-  erb :asks, :locals => { :asks => Ask.order_by([[:createdDateTime, :desc]]) }
-end
-get '/ask/show/pending' do
-  erb :asks, :locals => { :asks => Ask.where(:pending => true).order_by([[:createdDateTime, :desc]]) }
-end
-get '/ask/show/:id' do |id|
-  erb :ask, :locals => { :ask => Ask.find(id) }
-end
-get '/ask/:id' do |id|
-  ask = Ask.find(id)
-  ask.to_json
-end
-delete 'ask/:id' do |id|
-  Ask.find(id).destroy
-end
-
-post 'ask/:id/fulfill' do |id|
-  #content_type :json
-  ask = Ask.find(id)
-  if params[:email] then ask.add_to_set(params[:email]) end
-  #ask.to_json
-  erb :asks, :locals => { :asks => Ask.where(:pending => true) }
-end
-
-
-helpers do
-  def exists(username)
-    if User.where(:username => username).first
-      return true
+# delegate to dwolla to handle login
+get '/login' do
+    if session[:dwolla_token].nil? then
+        redirect DwollaClient.auth_url(REDIRECT_URL)
     else
-      return false
-    end
-  end
-
-  def lesson_done(u_id)
-    if Lesson.where(:u_id => u_id).first
-      return true
-    else
-      return false
-    end
-  end
-
-  def login?
-    if session[:username].nil?
-      return false
-        else
-            return true
-        end
-    end
-
-    def username
-        return session[:username]
+        erb session[:dwolla_token]
     end
 end
 
-get '/' do
-  erb :index
-end
-
-get '/interview/:code' do
-    @code = params[:code]
-  erb :interview
-end
-
-get '/interview' do
-    redirect '/interview/' + Base64.encode64(rand(1000000).to_s).chomp("=\n")
-end
-
-get '/lessons' do
-  erb :lessons
-end
-
-get '/lessons/:lesson' do
-    lesson = params[:lesson]
-    if lesson == "lists"
-        erb :lists
-    elsif lesson == "stacks"
-        erb :stacks
-    elsif lesson == "trees"
-        erb :trees
-    end
-end
-
-get '/contact' do
-  erb :contact
-end
-
-not_found do
-  erb :error
-end
-
-post '/signup' do
-    if not exists(params[:username])
-        new_id = User.all.last.id + 1
-        salt = BCrypt::Engine.generate_salt
-        hash = BCrypt::Engine.hash_secret(params[:password], salt)
-        User.create(id: new_id, username: params[:username], pass_salt: salt, pass_hash: hash)
-        session[:username] = params[:username]
-        redirect '/'
-    else
-        "this username exists already. go away"
-    end
-end
-
-post '/login' do
-    if exists(params[:username])
-        user = User.where(:username => params[:username]).first
-        if user.pass_hash == BCrypt::Engine.hash_secret(params[:password], user.pass_salt)
-            session[:username] = params[:username]
-            redirect '/dashboard'
-        end
-    end
-    erb :error
-end
-
-get '/dashboard' do
-    if !session[:username] then
-        session[:previous_url] = request.path
-        @error = 'Sorry but you must log in first'
-        halt erb(:index)
-    end
-    @username = session[:username]
-    erb :dashboard
-end
-
-get '/practice' do
-    if !session[:username] then
-        session[:previous_url] = request.path
-        @error = 'Sorry but you must log in first'
-        halt erb(:index)
-    end
-    @username = session[:username]
-    erb :practice
-end
-
+# clear session on logout
 get '/logout' do
-    session[:username] = nil
+    session.clear
     redirect '/'
 end
 
-get '/dwolla/demo' do
-    "Token: #{session[:dwolla_token]}"
+# show the submit form
+get '/ask' do
+  erb :_submit_ask, :locals => { :name => session[:name] }
+end
+
+# actually create the ask
+post '/ask' do
+    if not logged_in() then
+        redirect '/error'
+    else
+        ask = GrabTask.create(
+            :creatorName => session[:name],
+            :creatorId => session[:dwolla_id],
+            :state => $code_of_state[:pending],
+            :description => params[:description],
+            :location => params[:location]
+        )
+        redirect '/asks/pending'
+    end
+end
+
+# # actually create the ask
+# post '/solicit' do
+#   ask = GrabTask.create(
+#     :name => DwollaUser.name,
+#     :creatorId => DwollaUser.email,
+#     :state => code_of_state[:pending],
+#     :description => params[:description],
+#   )
+#   redirect '/asks/pending'
+# end
+
+get '/asks' do
+  erb :asks, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
+end
+
+get '/asks/pending' do
+  erb :asks, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
+end
+
+get '/ask/:id' do |id|
+  erb :_ask, :locals => { :ask => GrabTask.find(id) }
+end
+
+delete 'ask/:id' do |id|
+  GrabTask.find(id).destroy
+end
+
+post 'ask/:id/fulfill' do |id|
+    if not logged_in() then
+        redirect "/error"
+    else
+    # find the grabtask you're looking for
+        ask = GrabTask.find(id)
+
+        ask.fulfillerId = params[:dwolla_id]
+        ask.state = $code_of_state[:promised]
+
+        redirect '/asks/pending'
+    end
+end
+
+
+# Print the currently OAuth'd user's name
+# Testing only
+get '/user' do
+    if not logged_in() then
+        erb "Not logged in! <a href='/login'>Please login here</a>"
+    else
+        erb "Hi #{session[:name]} (id:#{session[:dwolla_id]})"
+    end
 end
 
 #
@@ -227,35 +135,37 @@ get '/dwolla/oauth' do
     # if we have an error param OR we don't have an access token param...
     if !params[:error].nil? or params[:code].nil? then
         logger.error("Bad OAuth Request")
-        return "Oh Noes! Bad times. #{params}"
+        erb "Oh Noes! Bad times. Got: #{params}"
     end
 
-    code = params['code']
-    logger.info(code)
-    token = DwollaClient.request_token(code, REDIRECT_URL)
-    logger.info(token)
-    #session[:dwolla_token] = token
-    #{}"Session #{session[:dwolla_token]}"
+    token = DwollaClient.request_token(params['code'], REDIRECT_URL)
+    DwollaUser = Dwolla::User.me(token).fetch
+
+    session[:name] = DwollaUser.name
+    session[:dwolla_id] = DwollaUser.id
+    session[:dwolla_token] = token
+
+    redirect "/"
 end
 
 #
 # Payment Information Callback
 #
 post '/dwolla/payment' do
-    return reqlog('/dwolla/payment', params)
+  return reqlog('/dwolla/payment', params)
 end
 
 #
 # Payment Success Callback
 #
 post '/dwolla/success' do
-    return reqlog('/dwolla/payment', params)
+  return reqlog('/dwolla/payment', params)
 end
 
 #
 # Request and Log
 #
 def reqlog(path, params)
-    logger.info("#{path} #{params}")
-    return "#{path} #{params}"
+  logger.info("#{path} #{params}")
+  return "#{path} #{params}"
 end

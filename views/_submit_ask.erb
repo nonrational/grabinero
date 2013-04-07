@@ -1,17 +1,23 @@
 <div id="submit" class="">
-  <form accept-charset="UTF-8" action="/ask/create" class="form-vertical" data-remote="true" method="post">
-    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+    <form accept-charset="UTF-8" action="/ask" class="form-vertical" data-remote="true" method="post">
 
+        <div class="submit-inputs">
+            <div class="control-group text optional">
+                Name: <%= name %>
+            </div>
+            <div class="control-group text optional">
+                What would you like?
+                <div class="controls">
+                    From: <input type='text' class="text optional" id="post_location" name="location" placeholder="Post a Request" rows="5">
+                </div>
+                <div class="controls">
+                    <textarea class="text optional" cols="80" id="post_description" name="description" placeholder="Post a Request" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
 
-
-    <div class="submit-inputs">
-      <div class="control-group string required"><div class="controls"><input autofocus="autofocus" class="string email required" id="post_email" name="email" placeholder="Your email address" required="required" size="50" type="text"></div></div>
-
-      <div class="control-group text optional"><div class="controls"><textarea class="text optional" cols="40" id="post_description" name="description" placeholder="Post a Request" rows="20"></textarea></div></div>
-    </div>
-
-    <div class="submit-button ask-submit">
-      <input class="btn btn-primary" name="commit" type="submit" value="Submit">
-    </div>
-
-</form></div>
+        <div class="submit-button ask-submit">
+          <input class="btn btn-primary" name="commit" type="submit" value="Submit">
+        </div>
+    </form>
+</div>

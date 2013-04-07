@@ -10,7 +10,6 @@ gem 'mongo'
 gem 'mongoid'
 gem 'bson'
 gem 'bson_ext'
-gem 'faraday'
 gem 'dwolla-ruby'
 
 group :development do

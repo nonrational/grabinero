@@ -73,7 +73,6 @@ DEPENDENCIES
   bson
   bson_ext
   dwolla-ruby
-  faraday
   mongo
   mongoid
   rack-rewrite
