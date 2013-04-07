@@ -5,7 +5,7 @@ $container-padding: 0px;
 $main: #002457; //main blue
 $main-lt: #00508a; //lt blue
 $accent: #feae31; //main yellow
-$accent-md: #fcd030; //med yellow
+$accent-md: #fdde6e; //med yellow
 $accent-lt: #efe457; //lt yellow
 $light: #fff;
 $dark: #000;
@@ -84,6 +84,9 @@ $fontstack: 'MuseoSlab', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 	//font-size: $font;
 	text-shadow: 0 -1px 0 $dkgray;
 	text-decoration: none;
+	a:hover, button:hover & {
+		color: lighten($main, 70%);
+	};
 }
 
 @mixin inline-hack () {
@@ -140,7 +143,7 @@ $fontstack: 'MuseoSlab', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     margin: 5px 0;
     
     &:focus {
-    	background-color: darken($light, 5%);
+    	border-bottom: 1px solid $accent;
     }
 }
 

@@ -7,7 +7,6 @@ $font-dir: "#{$root-dir}fonts/";
 @import "compass";
 @import "compass/reset";
 @import "compass/css3";
-//@import "compass/rgbapng";
 @import "base";
 
 /* Main Styles */
@@ -53,6 +52,7 @@ a {
 input[type="text"], input[type="email"], input[type="password"], textarea {
 	@include input-fields;
 	font-size: 30px;
+	@include inline-hack;
 }
 
 button {
@@ -117,12 +117,15 @@ nav {
 	}
 }
 
-.form {
+.dropdown {
 	width: 38%;
 	padding: 5%;
 	float: left;
 	background-color: $light;
 	font-size: 30px;
+	&.ask button, &.solicit button {
+		margin-top: 30px;
+	}
 	&.solicit {
 		float: right;
 	}
@@ -134,15 +137,15 @@ nav {
 	}
 	button {
 		display: block;
-		margin: 30px auto 0;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 
-table {
+.requesteditems {
 	background-color: $light;
 	font-size: 36px;
 	width: 100%;
-	margin: 50px 0;
 	th {
 		padding: 10px 50px;
 		text-align: center;
@@ -151,8 +154,11 @@ table {
 		@include knockout-text;
 	}
 	td {
+		cursor: pointer;
 		padding: 25px 50px;
+		line-height: 1.25em;
 		border-top: 1px solid $ltgray;
+		position: relative;
 		.conjunction {
 			color: $mdgray;
 			@include inline-hack;
@@ -160,6 +166,47 @@ table {
 			font-size: .55556em;
 			vertical-align: middle;
 			padding: 0 20px;
+		}
+	}
+	button {
+		position: absolute;
+		top: 30%;
+		left: 400px;
+		right: 400px;
+		z-index: 10;
+		font-size: .55556em;
+	}
+	form {
+		position: absolute;
+		z-index: 20;
+		top: 100%;
+		left: 25%;
+		right: 25%;
+		button {
+			z-index: 30;
+			position: static;
+		}
+	}
+	tr.pending:hover {
+		background-color: $accent-md;
+		p {
+			@include opacity(0.5);
+		}
+	}
+	tr.promised {
+		background-color: lighten($main, 80%);
+		p {
+			//@include opacity(0.5);
+		}
+		.pending {
+			@include basic-gradient ($main-lt, $main);
+			@include knockout-text;
+		}
+	}
+	tr.fulfilled {
+		background-color: $ltgray;
+		p {
+			@include opacity(0.35);
 		}
 	}
 }
@@ -170,7 +217,7 @@ footer {
 	a {
 		color: $light;
 		&:hover {
-			color: darken($light, 20%);
+			color: lighten($main, 80%);
 		};
 	}
 }

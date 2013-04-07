@@ -5,8 +5,32 @@
     </tr>
   <% asks.each do |ask| %>
     <tr class="<%= $state[ask.state] %>">
-        <td><%= erb :_ask, :layout => false, :locals => { :ask => ask } %></td>
+        <td><p><%= erb :_ask, :layout => false, :locals => { :ask => ask } %></p></td>
     </tr>
   <% end %>
+  <tr class="pending">
+        <td>
+        	<p>Alan<span class="conjunction">wants</span>a burrito<span class="conjunction">from</span>Chipotle.</p>
+        	<button class="pending">I got it</button>
+        </td>
+    </tr>
+    <tr class="promised">
+        <td>
+        	<p>Evan<span class="conjunction">is going to</span>Despana<span class="conjunction">in</span>20 minutes.</p>
+        	<button class="pending">Here you go</button>
+            <form action="" method="POST" class="dropdown">
+                <p>Came to</p>
+                <input type="text" name="amount" placeholder="(amount)">
+                <p>all told.</p>
+                <button type="submit">OK!</button>
+            </form>
+        </td>
+    </tr>
+    <tr class="fulfilled">
+        <td>
+        	<p>Don<span class="conjunction">is going to</span>Landmark<span class="conjunction">in</span>half an hour.</p>
+        	<button class="pending">Thanks!</button>
+        </td>
+    </tr>
 </table>
 <% end %>

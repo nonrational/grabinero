@@ -78,7 +78,7 @@ post '/ask' do
             :description => params[:description],
             :location => params[:location]
         )
-        redirect '/asks/pending'
+        redirect '/'
     end
 end
 

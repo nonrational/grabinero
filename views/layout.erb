@@ -34,24 +34,20 @@
                     <li><a href="#">I'm going out!</a></li>
                 </ul>
             </nav>
-            <div class="form ask">
-                <form action="/ask" method="POST">
-                    <p>I want</p>
-                    <input type="text" name="description" placeholder="(something)">
-                    <p class="optional">from</p>
-                    <input type="text" name="location" placeholder="(place, optional)" class="optional">
-                    <button type="submit">Please!</button>
-                </form>
-            </div>
-            <div class="form solicit">
-                <form action="/solicit" method="POST">
-                    <p>I'm going to</p>
-                    <input type="text" name="destination" placeholder="(place)">
-                    <p class="optional">in</p>
-                    <input type="text" name="time" placeholder="(time)" class="optional">
-                    <button type="submit">Who needs?</button>
-                </form>
-            </div>
+            <form action="/ask" method="POST" class="dropdown ask">
+                <p>I want</p>
+                <input type="text" name="description" placeholder="(something)">
+                <p class="optional">from</p>
+                <input type="text" name="location" placeholder="(place, optional)" class="optional">
+                <button type="submit">Please!</button>
+            </form>
+            <form action="/solicit" method="POST" class="dropdown solicit">
+                <p>I'm going to</p>
+                <input type="text" name="destination" placeholder="(place)">
+                <p class="optional">in</p>
+                <input type="text" name="time" placeholder="(time)" class="optional">
+                <button type="submit">Who needs?</button>
+            </form>
         </header>
         <article class="main wrapper clearfix">
 

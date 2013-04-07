@@ -57,7 +57,7 @@ textarea {
 .wrapper {
     width: 90%;
     max-width: 1026px;
-    margin: 0 5%;
+    margin: 50px 5%;
 }
 
 /* ===================
@@ -118,10 +118,6 @@ nav a:hover {
     MOBILE: Main
    ============== */
 
-.main {
-    //padding: 30px 0;
-}
-
 
 
 /* ==========================================================================
@@ -153,7 +149,7 @@ nav a:hover {
 
     .wrapper {
         width: 1026px; /* 1140px - 10% for margins */
-        margin: 0 auto;
+        margin: 50px auto;
     }
 }
 
