@@ -22,8 +22,6 @@ not_found do erb :error end
 
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
-REDIRECT_URL="http://localhost:4567/dwolla/oauth"
-
 class Ask
   include Mongoid::Document
   field :description, type: String
