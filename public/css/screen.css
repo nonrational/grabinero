@@ -344,18 +344,13 @@ input .form .optional {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003141}}
-.inputs {
-  clear: both;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003145}}
 table {
   background-color: white;
   font-size: 36px;
   width: 100%;
   margin: 50px 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003146}}
 table th {
   padding: 10px 50px;
   text-align: center;
@@ -375,12 +370,12 @@ table th {
   text-shadow: 0 -1px 0 #333333;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003157}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003153}}
 table td {
   padding: 25px 50px;
   border-top: 1px solid #eeeeee;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003160}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003156}}
 table td .conjunction {
   color: #999999;
   display: inline-block;
@@ -398,18 +393,18 @@ table td .conjunction {
   padding: 0 20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003171}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003167}}
 footer {
   text-align: center;
   color: white;
   text-shadow: 0 -1px 0 #333333;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003174}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003170}}
 footer a {
   color: white;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003176}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003172}}
 footer a:hover {
   color: #cccccc;
 }
