@@ -22,6 +22,7 @@
         <![endif]-->
 
         <header class="wrapper clearfix">
+
             <h1 class="logo">Grabinero</h1>
             <% if session[:dwolla_token] != nil then %>
             <div class="auth">Hi, <%= session[:name] %>! <form action='/logout' method='GET'><button>Log Out</button></form></div>
@@ -30,18 +31,18 @@
             <% end %>
             <nav>
                 <ul>
-                    <li><a href="#">While you're out!</a></li>
-                    <li><a href="#">I'm going out!</a></li>
+                    <li><a href="#" onclick="return false;" class="askopen">While you're out!</a></li>
+                    <li><a href="#" onclick="return false;" class="solicitopen">I'm going out!</a></li>
                 </ul>
             </nav>
-            <form action="/ask" method="POST" class="dropdown ask">
+            <form action="/ask" method="POST" class="dropdown askform">
                 <p>I want</p>
                 <input type="text" name="description" placeholder="(something)">
                 <p class="optional">from</p>
                 <input type="text" name="location" placeholder="(place, optional)" class="optional">
                 <button type="submit">Please!</button>
             </form>
-            <form action="/solicit" method="POST" class="dropdown solicit">
+            <form action="/solicit" method="POST" class="dropdown solicitform">
                 <p>I'm going to</p>
                 <input type="text" name="destination" placeholder="(place)">
                 <p class="optional">in</p>
@@ -66,6 +67,7 @@
         </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/grabinero.js"></script>
         <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="/js/main.js"></script>
