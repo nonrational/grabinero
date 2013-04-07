@@ -23,7 +23,7 @@ body {
 	@include background-image(linear-gradient(bottom, $main 0%, $main-lt 100%)); // layer fill content
 	min-width: 320px;
     overflow: hidden;
-	margin: 50px 0;
+	//margin: 50px 0;
 	padding: 0;
 	font-family: $fontstack;
 	font-weight: normal;

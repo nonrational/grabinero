@@ -1,4 +1,4 @@
-<p id="<%= ask._id %>"><%= ask.creatorName %>
+<p><%= ask.creatorName %>
     <% if ask.ask then %>
         <span class="conjunction">wants</span>
         <%= ask.description.nil? or ask.description.empty? ? "?" : ask.description %>
