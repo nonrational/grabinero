@@ -7,7 +7,7 @@ class GrabTask
     include Mongoid::Document
     field :creatorName, type: String
     field :creatorId, type: String
-    field :responderName, type: String
+    field :responderName, type: String, default: -> { nil }
     field :responderId, type: String
     field :state, type: Integer
     field :createdDateTime, type: DateTime, default: ->{ DateTime.now }

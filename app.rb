@@ -18,7 +18,8 @@ get '/'   do
     if not logged_in() then
         erb :brochure
     else
-        erb :index, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
+        # .where(:state => $code_of_state[:pending] )
+        erb :index, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
     end
 end
 not_found do erb :error end
@@ -53,7 +54,9 @@ post '/ask' do
             :creatorId => session[:dwolla_id],
             :state => $code_of_state[:pending],
             :description => params[:description],
-            :location => params[:location]
+            :location => params[:location],
+            :responderName => "",
+            :responderId => ""
         )
         redirect '/'
     end
@@ -70,7 +73,9 @@ post '/solicit' do
             :state => $code_of_state[:pending],
             :location => params[:destination],
             :timespan => params[:time],
-            :ask => false
+            :ask => false,
+            :responderName => nil,
+            :responderId => nil
         )
         redirect '/'
     end
@@ -92,16 +97,18 @@ end
 #   GrabTask.find(id).destroy
 # end
 
-post 'ask/:id/fulfill' do |id|
+post '/ask/*/fulfill' do
+    id = params[:splat]
     if not logged_in() then
         redirect "/error"
     else
-    # find the grabtask you're looking for
-        ask = GrabTask.find(id)
-
-        ask.fulfillerId = params[:dwolla_id]
-        ask.state = $code_of_state[:promised]
-
+        # find the grabtask you're looking for
+        ask = GrabTask.find(id).first
+        # pp ask
+        ask.update_attribute(:responderName, session[:name])
+        ask.update_attribute(:responderId, session[:dwolla_id])
+        ask.update_attribute(:state, $code_of_state[:promised])
+        ask.save
         redirect '/'
     end
 end

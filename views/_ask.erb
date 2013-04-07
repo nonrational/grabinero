@@ -1,5 +1,4 @@
-<div class="ask" id="<%= ask._id %>">
-    <p><%= ask.creatorName %>
+<p id="<%= ask._id %>"><%= ask.creatorName %>
     <% if ask.ask then %>
         <span class="conjunction">wants</span>
         <%= ask.description.nil? or ask.description.empty? ? "?" : ask.description %>
@@ -13,6 +12,23 @@
             <span class="conjunction">in</span><%= ask.timespan %>
         <% end %>
     <% end %>
-    </p>
+</p>
 
-</div>
+<% if $state[ask.state] == "promised" %>
+    <button class="action">Here you go</button>
+    <form action="" method="POST" class="dropdown">
+        <p>Came to</p>
+        <input type="text" name="amount" placeholder="(amount)">
+        <p>all told.</p>
+        <button type="submit">OK!</button>
+    </form>
+<% elsif $state[ask.state] == "fulfilled" %>
+    <button class="action">Thanks!</button>
+<% else %>
+    <form action="/ask/<%= ask._id %>/fulfill" method="POST"><button class="action">I got it</button></form>
+<% end %>
+
+
+
+
+

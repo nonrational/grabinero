@@ -5,10 +5,10 @@
     </tr>
   <% asks.each do |ask| %>
     <tr class="<%= $state[ask.state] %>">
-        <td><p><%= erb :_ask, :layout => false, :locals => { :ask => ask } %></p></td>
+        <td><%= erb :_ask, :layout => false, :locals => { :ask => ask } %></td>
     </tr>
   <% end %>
-  <tr class="pending">
+<!--   <tr class="pending">
         <td>
         	<p>Alan<span class="conjunction">wants</span>a burrito<span class="conjunction">from</span>Chipotle.</p>
         	<button class="action">I got it</button>
@@ -31,6 +31,6 @@
         	<p>Don<span class="conjunction">is going to</span>Landmark<span class="conjunction">in</span>half an hour.</p>
         	<form><button class="action">Thanks!</button></form>
         </td>
-    </tr>
+    </tr> -->
 </table>
 <% end %>
