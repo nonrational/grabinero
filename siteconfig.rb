@@ -7,14 +7,17 @@ class GrabTask
     include Mongoid::Document
     field :creatorName, type: String
     field :creatorId, type: String
-    field :responderName, type: String, default: -> { nil }
+    field :responderName, type: String
     field :responderId, type: String
     field :state, type: Integer
     field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
     field :description, type: String
-    field :location, type:String
+    field :location, type: String
     field :timespan, type: String
     field :ask, type: Boolean, default: -> { true }
+    field :transactionId, type: String
+    field :amount, type: BigDecimal
+    field :fulfilledDateTime, type: DateTime
 end
 
 configure :development do
