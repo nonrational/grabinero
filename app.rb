@@ -7,6 +7,17 @@ require 'base64'
 require 'mongoid'
 require 'mongo'
 require 'uri'
+require './ruby/lib/dwolla-ruby.rb'
+require 'pp'
+
+# REAL API ACCESS KEYS
+APP_KEY   ="2vezPKWMkzzQC6vC1u+OPYED/fVxO1JTh2mNqljiDk6nB4so4c"
+APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
+
+DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
+
+REDIRECT_URL="http://localhost:4567/dwolla/oauth"
+# REDIRECT_URL="http://www.grabinero.com/dwolla/oauth"
 
 state = [:pending, :promised, :fulfilled, :completed]
 code_of_state = Hash[state.map.with_index.to_a]
@@ -33,6 +44,11 @@ configure :development do
       }
     }
   end
+end
+
+get '/testing' do
+    authUrl = DwollaClient.auth_url(REDIRECT_URL)
+    "To authorized, go <a target='_blank' href=\"#{authUrl}\">here</a>."
 end
 
 configure :production do
@@ -87,11 +103,13 @@ delete 'ask/:id' do |id|
 end
 
 post 'ask/:id/fulfill' do |id|
-  #content_type :json  
+  #content_type :json
   ask = Ask.find(id)
   if params[:email]
     ask.fulfiller = params[:email]
     ask.state = code_of_state[:promised]
+  else
+    erb :error
   end
   #ask.to_json
   redirect '/asks/pending'
@@ -163,11 +181,31 @@ get '/logout' do
   redirect '/'
 end
 
+# Print the currently OAuth'd user's name
+get '/dwolla/demo' do
+    DwollaUser = Dwolla::User.me(session[:dwolla_token])
+    DwollaUser.fetch
+    "Name #{DwollaUser.name}"
+end
+
 #
 # OAuth Callback
 #
-post '/dwolla/oauth' do
-  return reqlog('/dwolla/oauth', params)
+get '/dwolla/oauth' do
+    # if we have an error param OR we don't have an access token param...
+    if !params[:error].nil? or params[:code].nil? then
+        logger.error("Bad OAuth Request")
+        return "Oh Noes! Bad times. #{params}"
+    end
+
+    code = params['code']
+    logger.info(code)
+    token = DwollaClient.request_token(code, REDIRECT_URL)
+    logger.info(token)
+    session[:dwolla_token] = token
+    "Session #{session[:dwolla_token]}"
+
+    redirect "/"
 end
 
 #
