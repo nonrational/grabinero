@@ -5,13 +5,14 @@ $(document).ready(function(){
 
     function coolRunnings(primary, secondary){
         var startingHidden = $(primary).is(':hidden');
-
         $(primary).slideToggle(function(){});
         $(secondary).slideUp();
         if(!startingHidden){
             $('article.main').fadeTo(250, 1)
         } else {
-            $('article.main').fadeTo(250, .5)        }
+            $('article.main').fadeTo(250, .5)
+            $('.promised .dropdown').slideUp();
+        }
     }
     
 

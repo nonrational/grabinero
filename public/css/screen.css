@@ -109,7 +109,7 @@ body {
   background-image: -o-linear-gradient(bottom, #002457 0%, #00508a 100%);
   background-image: linear-gradient(bottom, #002457 0%, #00508a 100%);
   min-width: 320px;
-  padding: 0;
+  padding: 0 0 200px;
   font-family: "MuseoSlab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: normal;
   font-style: normal;
@@ -362,7 +362,7 @@ nav li a {
   padding: 5%;
   background-image: url("/images/form-bg.png");
   background-repeat: no-repeat;
-  background-color: #d4d4d4;
+  background-color: #006ebd;
   background-repeat: repeat-x;
   background-position: bottom;
   font-size: 30px;
@@ -566,16 +566,18 @@ footer {
   color: white;
   text-shadow: 0 -1px 0 #333333;
   text-decoration: none;
+  position: relative;
+  z-index: 1;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000387}}
 footer a:hover, button:hover footer {
   color: #bdd8ff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003270}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003272}}
 footer a {
   color: white;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003272}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003274}}
 footer a:hover {
   color: #f0f6ff;
 }

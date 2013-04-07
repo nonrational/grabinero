@@ -24,7 +24,7 @@ body {
 	min-width: 320px;
     //overflow: hidden;
 	//margin: 50px 0;
-	padding: 0;
+	padding: 0 0 200px;
 	font-family: $fontstack;
 	font-weight: normal;
 	font-style: normal;
@@ -139,7 +139,7 @@ nav {
 	padding: 5%;
 	//float: left;
 	@include retina-bg('form-bg', 'png', 15px, 1000px);
-	background-color: darken($ltgray, 10%);
+	background-color: lighten($main-lt, 10%);
 	background-repeat: repeat-x;
 	background-position: bottom;
 	font-size: 30px;
@@ -267,6 +267,8 @@ table, .requesteditems {
 footer {
 	text-align: center;
 	@include knockout-text;
+	position: relative;
+	z-index: 1;
 	a {
 		color: $light;
 		&:hover {
