@@ -1,5 +1,0 @@
-<% unless asks.nil? %>
-  <% asks.each do |ask| %>
-    <%= erb :_ask, :layout => false, :locals => { :ask => ask } %>
-  <% end %>
-<% end %>

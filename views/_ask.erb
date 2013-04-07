@@ -1,3 +1,10 @@
 <div class="ask" id="<%= ask._id %>">
-  <p><%= ask.creatorName %> wants <%= ask.description %> @ <%= ask.location %></p>
+  <p><%= ask.creatorName %>
+  	<span class="conjunction">wants</span>
+  	<%= ask.description %>
+	<% unless ask.location.nil? or ask.location.empty? %>
+  	<span class="conjunction">from</span>
+  	<%= ask.location %>
+  	<% end %>
+  	</p>
 </div>

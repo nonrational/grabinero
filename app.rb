@@ -11,12 +11,16 @@ require 'pp'
 require './ruby/lib/dwolla-ruby.rb'
 require "./siteconfig.rb"
 
-get '/'   do erb :index end
+get '/'   do
+    if not logged_in() then
+        erb :brochure
+    else
+        erb :index, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
+    end
+end
 not_found do erb :error end
 
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
-
-REDIRECT_URL="http://localhost:4567/dwolla/oauth"
 
 class Ask
   include Mongoid::Document
@@ -141,7 +145,7 @@ get '/dwolla/oauth' do
     token = DwollaClient.request_token(params['code'], REDIRECT_URL)
     DwollaUser = Dwolla::User.me(token).fetch
 
-    session[:name] = DwollaUser.name
+    session[:name] = DwollaUser.name.split.first
     session[:dwolla_id] = DwollaUser.id
     session[:dwolla_token] = token
 

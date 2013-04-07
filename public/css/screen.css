@@ -112,7 +112,7 @@ body {
   overflow: hidden;
   margin: 50px 0;
   padding: 0;
-  font-family: "Museo Slab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "MuseoSlab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 16px;
@@ -141,7 +141,7 @@ a:hover {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000353}}
 input[type="text"], input[type="email"], input[type="password"], textarea {
-  font-family: "Museo Slab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "MuseoSlab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   border: none;
   border-bottom: 1px solid #333333;
   outline: none;
@@ -179,7 +179,7 @@ button {
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
-  font-family: "Museo Slab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "MuseoSlab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   font-size: .66667em;
