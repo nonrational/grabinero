@@ -23,7 +23,16 @@
 
         <header class="wrapper clearfix">
             <h1 class="logo">Grabinero</h1>
-            <div class="auth">Hi, Alan! <button>Log Out</button></div>
+            <% if session[:dwolla_token] != nil then %>
+            <div class="auth">Hi, Alan! <form action='/logout' method='GET'><button>Log Out</button></form></div>
+            <% else %>
+            <div class="auth"><form action='/login' method='GET'><button>Log in with Dwolla</button></form></div>
+            <% end %>
+        </header>
+
+        <%=  yield %>
+
+        <article class="main wrapper clearfix">
             <nav>
                 <ul>
                     <li><a href="#">While you're out!</a></li>
@@ -48,9 +57,7 @@
                     <button type="submit">Who needs?</button>
                 </form>
             </div>
-        </header>
 
-        <article class="main wrapper clearfix">
             <table class="requesteditems">
                 <tr>
                     <th>Up for Grabs</th>
@@ -72,11 +79,11 @@
 
         <footer class="wrapper">
             <p>&copy; 2013 Grabinero. </p>
-            <p>Made with love for <a href="http://fintechhack.com/" target="_blank">Fintech Hackathon</a> 
-            by <a href="http://twitter.com/nonrational" target="_blank">@nonrational</a>, 
-            <a href="http://twitter.com/madysondesigns" target="_blank">@MadysonDesigns</a>, 
-            <a href="http://twitter.com/joeziemer" target="_blank">@joeziemer</a>, 
-            <a href="http://twitter.com/edrwr" target="_blank">@edrwr</a>, and 
+            <p>Made with love for <a href="http://fintechhack.com/" target="_blank">Fintech Hackathon</a>
+            by <a href="http://twitter.com/nonrational" target="_blank">@nonrational</a>,
+            <a href="http://twitter.com/madysondesigns" target="_blank">@MadysonDesigns</a>,
+            <a href="http://twitter.com/joeziemer" target="_blank">@joeziemer</a>,
+            <a href="http://twitter.com/edrwr" target="_blank">@edrwr</a>, and
             <a href="http://twitter.com/don4yu" target="_blank">@don4yu</a>.</p>
         </footer>
 
@@ -91,6 +98,6 @@
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-    <%=  yield %>
+
     </body>
 </html>
