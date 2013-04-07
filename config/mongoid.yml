@@ -1,2 +1,4 @@
 production:
-  uri: <%= ENV['MONGOLAB_URI'] %>
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>

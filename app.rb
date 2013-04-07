@@ -11,6 +11,9 @@ require 'pp'
 require './ruby/lib/dwolla-ruby.rb'
 require "./siteconfig.rb"
 
+Mongoid.load!("config/mongoid.yml")
+DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
+
 get '/'   do
     if not logged_in() then
         erb :brochure
@@ -19,32 +22,6 @@ get '/'   do
     end
 end
 not_found do erb :error end
-
-DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
-
-REDIRECT_URL="http://localhost:4567/dwolla/oauth"
-
-class Ask
-  include Mongoid::Document
-  field :description, type: String
-  field :email, type: String
-  field :fulfiller, type: String
-  field :state, type: Integer
-  field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
-end
-
-configure :development do
-	enable :sessions
-	set :public_folder, Proc.new { File.join(root, "public") }
-    Mongoid.configure do |config|
-    config.sessions = {
-      :default => {
-        :hosts => ["localhost:27017"],
-        :database => "grabinero"
-      }
-    }
- 	end
-end
 
 # delegate to dwolla to handle login
 get '/login' do
@@ -82,32 +59,38 @@ post '/ask' do
     end
 end
 
-# # actually create the ask
-# post '/solicit' do
-#   ask = GrabTask.create(
-#     :name => DwollaUser.name,
-#     :creatorId => DwollaUser.email,
-#     :state => code_of_state[:pending],
-#     :description => params[:description],
-#   )
-#   redirect '/asks/pending'
+# actually create the ask
+post '/solicit' do
+  if not logged_in() then
+        redirect '/error'
+    else
+        ask = GrabTask.create(
+            :creatorName => session[:name],
+            :creatorId => session[:dwolla_id],
+            :state => $code_of_state[:pending],
+            :location => params[:destination],
+            :timespan => params[:time],
+            :ask => false
+        )
+        redirect '/'
+    end
+end
+
+# get '/asks' do
+#   erb :asks, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
 # end
 
-get '/asks' do
-  erb :asks, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
-end
+# get '/asks/pending' do
+#   erb :asks, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
+# end
 
-get '/asks/pending' do
-  erb :asks, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
-end
+# get '/ask/:id' do |id|
+#   erb :_ask, :locals => { :ask => GrabTask.find(id) }
+# end
 
-get '/ask/:id' do |id|
-  erb :_ask, :locals => { :ask => GrabTask.find(id) }
-end
-
-delete 'ask/:id' do |id|
-  GrabTask.find(id).destroy
-end
+# delete 'ask/:id' do |id|
+#   GrabTask.find(id).destroy
+# end
 
 post 'ask/:id/fulfill' do |id|
     if not logged_in() then
@@ -119,7 +102,7 @@ post 'ask/:id/fulfill' do |id|
         ask.fulfillerId = params[:dwolla_id]
         ask.state = $code_of_state[:promised]
 
-        redirect '/asks/pending'
+        redirect '/'
     end
 end
 
