@@ -363,7 +363,7 @@ nav li a {
   display: none;
   background-image: url("/images/form-bg.png");
   background-repeat: no-repeat;
-  background-color: #006ebd;
+  background-color: rgba(47, 102, 142, 0.5);
   background-repeat: repeat-x;
   background-position: bottom;
   font-size: 30px;

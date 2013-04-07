@@ -139,7 +139,7 @@ nav {
 	padding: 5%;
 	display: none;
 	@include retina-bg('form-bg', 'png', 15px, 1000px);
-	background-color: lighten($main-lt, 10%);
+	background-color: rgba(desaturate(lighten($main-lt, 10%), 50%), .5);
 	background-repeat: repeat-x;
 	background-position: bottom;
 	font-size: 30px;
