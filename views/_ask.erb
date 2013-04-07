@@ -14,7 +14,7 @@
     <% end %>
 </p>
 
-<% if $state[ask.state] == "promised" %>
+<% if $state[ask.state] == :promised %>
     <button class="action">Here you go</button>
     <form action="" method="POST" class="dropdown">
         <p>Came to</p>
@@ -22,7 +22,7 @@
         <p>all told.</p>
         <button type="submit">OK!</button>
     </form>
-<% elsif $state[ask.state] == "fulfilled" %>
+<% elsif $state[ask.state] == :fulfilled %>
     <button class="action">Thanks!</button>
 <% else %>
     <form action="/ask/<%= ask._id %>/fulfill" method="POST"><button class="action">I got it</button></form>
