@@ -1,17 +1,27 @@
 $(document).ready(function(){
 	//show/hide initial forms
-    $('.askform').hide();
+    $('.askform, .solicitform').hide();
+
+
+    function coolRunnings(primary, secondary){
+        var startingHidden = $(primary).is(':hidden');
+
+        $(primary).slideToggle(function(){});
+        $(secondary).slideUp();
+        if(!startingHidden){
+            $('article.main').fadeTo(250, 1)
+        } else {
+            $('article.main').fadeTo(250, .5)        }
+    }
+    
+
     $('.askopen').click( function() {
-        $('.askform').slideToggle();
-        $('.solicitform').slideUp();
-        //these are for fading out the table, doesn't work properly
-        //$('article.main').toggleClass('fadeout');
+        coolRunnings('.askform', '.solicitform');
     });
-    $('.solicitform').hide();
+
+    // click open on right, slide up left and toggle right
     $('.solicitopen').click( function() {
-        $('.solicitform').slideToggle();
-        $('.askform').slideUp();
-        //$('article.main').toggleClass('fadeout');
+        coolRunnings('.solicitform', '.askform')        
     });
 
     //show/hide action buttons
