@@ -6,9 +6,6 @@ APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
 
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
-REDIRECT_URL="http://localhost:4567/dwolla/oauth"
-# REDIRECT_URL="http://www.grabinero.com/dwolla/oauth"
-
 $state = [:pending, :promised, :fulfilled, :completed]
 $code_of_state = Hash[$state.map.with_index.to_a]
 
@@ -30,11 +27,14 @@ configure :development do
     set :public_folder, Proc.new { File.join(root, "public") }
     Mongoid.configure do |config|
     config.sessions = {
-    :default => {
-        :hosts => ["localhost:27017"],
-        :database => "grabinero"
+        :default => {
+            :hosts => ["localhost:27017"],
+            :database => "grabinero"
+        }
     }
-    }
+
+    REDIRECT_URL="http://localhost:4567/dwolla/oauth"
+
     end
 end
 
@@ -45,6 +45,7 @@ configure :production do
     conn = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
     db   = conn.db(uri.path.gsub(/^\//, ''))
     db.collection_names.each { |name| puts name }
+    REDIRECT_URL="http://www.grabinero.com/dwolla/oauth"
 end
 
 helpers do
