@@ -31,7 +31,14 @@ get '/' do
         txns = get_transactions
         txnDatas = []
         txns['Response'].each do |txn|
-            txnDatas.push({id:txn['Id'],fromId:txn['SourceId'],toId:txn['DestinationId'],amount:txn['Amount'],date:Date.parse(txn['Date'])})
+            txndata = {
+                id:txn['Id'],
+                fromId:txn['SourceId'],
+                toId:txn['DestinationId'],
+                amount:txn['Amount']
+                # , date:txn['Date'].nil? ? nil : Date.parse(txn['Date'])
+            }
+            txnDatas.push(txndata)
         end
 
         pp txnDatas
