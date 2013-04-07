@@ -1,8 +1,8 @@
 /* Imports/Constants */
 
-$root-dir: "../../";
-$img-dir: "#{$root-dir}public/images/";
-$font-dir: "#{$root-dir}public/fonts/";
+$root-dir: "/";
+$img-dir: "#{$root-dir}images/";
+$font-dir: "#{$root-dir}fonts/";
 
 @import "compass";
 @import "compass/reset";
