@@ -1,10 +1,5 @@
 # siteconfig.rb
 
-# REAL API ACCESS KEYS
-
-
-
-
 $state = [:pending, :promised, :fulfilled, :completed]
 $code_of_state = Hash[$state.map.with_index.to_a]
 
@@ -33,6 +28,11 @@ configure :development do
         }
     end
 
+    # uat
+    # APP_KEY   ="VeE+aHvf/fFtD4eiN81WqnKk+AB75mrFWgDx4VxsNIxnybsl9g"
+    # APP_SECRET="C+gmnBgguNZ0LZI1XCSYh50pJLzcTGobGxsv++PJY8/fWJrT5u"
+    # REDIRECT_URL="http://localhost:4567/dwolla/oauth"
+    # www
     APP_KEY   ="2vezPKWMkzzQC6vC1u+OPYED/fVxO1JTh2mNqljiDk6nB4so4c"
     APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
     REDIRECT_URL="http://localhost:4567/dwolla/oauth"
