@@ -12,6 +12,7 @@ require './ruby/lib/dwolla-ruby.rb'
 require "./siteconfig.rb"
 
 Mongoid.load!("config/mongoid.yml")
+DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
 get '/'   do
     if not logged_in() then
@@ -21,30 +22,6 @@ get '/'   do
     end
 end
 not_found do erb :error end
-
-DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
-
-class Ask
-  include Mongoid::Document
-  field :description, type: String
-  field :email, type: String
-  field :fulfiller, type: String
-  field :state, type: Integer
-  field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
-end
-
-configure :development do
-	enable :sessions
-	set :public_folder, Proc.new { File.join(root, "public") }
-    Mongoid.configure do |config|
-    config.sessions = {
-      :default => {
-        :hosts => ["localhost:27017"],
-        :database => "grabinero"
-      }
-    }
- 	end
-end
 
 # delegate to dwolla to handle login
 get '/login' do
