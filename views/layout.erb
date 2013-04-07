@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/screen.css">
 
-        <script src="../public/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -28,11 +28,6 @@
             <% else %>
             <div class="auth"><form action='/login' method='GET'><button>Log in with Dwolla</button></form></div>
             <% end %>
-        </header>
-
-        <%=  yield %>
-
-        <article class="main wrapper clearfix">
             <nav>
                 <ul>
                     <li><a href="#">While you're out!</a></li>
@@ -40,7 +35,7 @@
                 </ul>
             </nav>
             <div class="form ask">
-                <form action="">
+                <form action="/ask" method="POST">
                     <p>I want</p>
                     <input type="text" name="description" placeholder="(something)">
                     <p class="optional">from</p>
@@ -49,7 +44,7 @@
                 </form>
             </div>
             <div class="form solicit">
-                <form action="">
+                <form action="/solicit" method="POST">
                     <p>I'm going to</p>
                     <input type="text" name="destination" placeholder="(place)">
                     <p class="optional">in</p>
@@ -57,6 +52,11 @@
                     <button type="submit">Who needs?</button>
                 </form>
             </div>
+        </header>
+
+        <%=  yield %>
+
+<!--         <article class="main wrapper clearfix">
 
             <table class="requesteditems">
                 <tr>
@@ -75,7 +75,7 @@
                     <td>Don<span class="conjunction">is going to</span>Landmark<span class="conjunction">in</span>half an hour.</td>
                 </tr>
             </table>
-        </article>
+        </article> -->
 
         <footer class="wrapper">
             <p>&copy; 2013 Grabinero. </p>
