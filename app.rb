@@ -22,14 +22,16 @@ REDIRECT_URL="http://localhost:4567/dwolla/oauth"
 state = [:pending, :promised, :fulfilled, :completed]
 code_of_state = Hash[state.map.with_index.to_a]
 
-class Ask
+class GrabTask
   include Mongoid::Document
-  field :description, type: String
   field :name, type: String
-  field :email, type: String
-  field :fulfiller, type: String
+  field :creatorId, type: String
+  field :responderId, type: String
   field :state, type: Integer
   field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
+  field :description, type: String
+  field :location, type:String
+  field :timespan, type: String
 end
 
 configure :development do
@@ -64,40 +66,39 @@ helpers do
   def fulfill_url(ask)
     "/ask/#{id}/fulfill"
   end
+
   def show_url(ask)
     "/ask/show/#{id}"
   end
-  def exists(username)
-    if User.where(:username => username).first
-      return true
-    else
-      return false
-    end
-  end
-
-  def login?
-    if session[:username].nil?
-      return false
-    else
-      return true
-    end
-  end
-
-  def username
-    return session[:username]
-  end
 end
 
+# show the submit form
 get '/ask' do
   erb :_submit_ask
 end
 
+# actually create the ask
 post '/ask' do
+  DwollaUser = Dwolla::User.me(session[:dwolla_token]).fetch
+
   ask = Ask.create(
-    :description => params[:description],
-    :name => params[:name],
-    :email => params[:email],
+    :name => DwollaUser.name,
+    :creatorId => DwollaUser.email,
     :state => code_of_state[:pending],
+    :description => params[:description],
+  )
+  redirect '/asks/pending'
+end
+
+# actually create the ask
+post '/solicit' do
+  DwollaUser = Dwolla::User.me(session[:dwolla_token]).fetch
+
+  ask = Ask.create(
+    :name => DwollaUser.name,
+    :creatorId => DwollaUser.email,
+    :state => code_of_state[:pending],
+    :description => params[:description],
   )
   redirect '/asks/pending'
 end
@@ -113,13 +114,6 @@ end
 get '/ask/:id' do |id|
   erb :_ask, :locals => { :ask => Ask.find(id) }
 end
-
-=begin
-get '/ask/:id' do |id|
-  ask = Ask.find(id)
-  ask.to_json
-end
-=end
 
 delete 'ask/:id' do |id|
   Ask.find(id).destroy
@@ -150,6 +144,8 @@ end
 get '/login' do
     if session[:dwolla_token].nil? then
         redirect DwollaClient.auth_url(REDIRECT_URL)
+    else
+        erb session[:dwolla_token]
     end
 end
 
@@ -160,10 +156,13 @@ get '/logout' do
 end
 
 # Print the currently OAuth'd user's name
+# Testing only
 get '/user' do
-    DwollaUser = Dwolla::User.me(session[:dwolla_token])
-    DwollaUser.fetch
-    erb "#{DwollaUser.name}"
+    if session[:dwolla_token].nil?
+        erb "Not logged in! <a href='/login'>Please login here</a>"
+    else
+        erb "Hi #{session[:name]} (id:#{session[:dwolla_id]})"
+    end
 end
 
 #
@@ -177,6 +176,10 @@ get '/dwolla/oauth' do
     end
 
     token = DwollaClient.request_token(params['code'], REDIRECT_URL)
+    DwollaUser = Dwolla::User.me(token).fetch
+
+    session[:name] = DwollaUser.name
+    session[:dwolla_id] = DwollaUser.id
     session[:dwolla_token] = token
 
     redirect "/"
