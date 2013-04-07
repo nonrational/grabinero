@@ -1,5 +1,12 @@
 <% unless asks.nil? %>
+<table class="requesteditems">
+	<tr>
+	    <th>Up for Grabs</th>
+	</tr>
   <% asks.each do |ask| %>
-    <%= erb :_ask, :layout => false, :locals => { :ask => ask } %>
+    <tr>
+        <td><%= erb :_ask, :layout => false, :locals => { :ask => ask } %></td>
+    </tr>
   <% end %>
+</table>
 <% end %>
