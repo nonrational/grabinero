@@ -7,140 +7,15 @@ require 'base64'
 require 'mongoid'
 require 'mongo'
 require 'uri'
-require './ruby/lib/dwolla-ruby.rb'
 require 'pp'
+require './ruby/lib/dwolla-ruby.rb'
+require "./siteconfig.rb"
 
-# REAL API ACCESS KEYS
-APP_KEY   ="2vezPKWMkzzQC6vC1u+OPYED/fVxO1JTh2mNqljiDk6nB4so4c"
-APP_SECRET="m5tL7eWao79w6cdSrS6jFhG0IQVwvPpmSibBMlSFy6RbKgskfk"
+get '/'   do erb :index end
+not_found do erb :error end
 
-DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
 
-REDIRECT_URL="http://localhost:4567/dwolla/oauth"
-# REDIRECT_URL="http://www.grabinero.com/dwolla/oauth"
-
-state = [:pending, :promised, :fulfilled, :completed]
-code_of_state = Hash[state.map.with_index.to_a]
-
-class GrabTask
-  include Mongoid::Document
-  field :name, type: String
-  field :creatorId, type: String
-  field :responderId, type: String
-  field :state, type: Integer
-  field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
-  field :description, type: String
-  field :location, type:String
-  field :timespan, type: String
-end
-
-configure :development do
-  enable :sessions
-  set :public_folder, Proc.new { File.join(root, "public") }
-  Mongoid.load!("mongoid.yml")
-  Mongoid.configure do |config|
-    config.sessions = {
-      :default => {
-        :hosts => ["localhost:27017"],
-        :database => "grabinero"
-      }
-    }
-  end
-end
-
-configure :production do
-  enable :sessions
-  set :public_folder, Proc.new { File.join(root, "public") }
-  uri  = URI.parse(ENV['MONGOLAB_URI'])
-  conn = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
-  db   = conn.db(uri.path.gsub(/^\//, ''))
-  db.collection_names.each { |name| puts name }
-end
-
-before do
-  puts '[Params]'
-  p params
-end
-
-helpers do
-  def fulfill_url(ask)
-    "/ask/#{id}/fulfill"
-  end
-
-  def show_url(ask)
-    "/ask/show/#{id}"
-  end
-end
-
-# show the submit form
-get '/ask' do
-  erb :_submit_ask
-end
-
-# actually create the ask
-post '/ask' do
-  DwollaUser = Dwolla::User.me(session[:dwolla_token]).fetch
-
-  ask = Ask.create(
-    :name => DwollaUser.name,
-    :creatorId => DwollaUser.email,
-    :state => code_of_state[:pending],
-    :description => params[:description],
-  )
-  redirect '/asks/pending'
-end
-
-# actually create the ask
-post '/solicit' do
-  DwollaUser = Dwolla::User.me(session[:dwolla_token]).fetch
-
-  ask = Ask.create(
-    :name => DwollaUser.name,
-    :creatorId => DwollaUser.email,
-    :state => code_of_state[:pending],
-    :description => params[:description],
-  )
-  redirect '/asks/pending'
-end
-
-get '/asks' do
-  erb :asks, :locals => { :asks => Ask.order_by([[:createdDateTime, :desc]]) }
-end
-
-get '/asks/pending' do
-  erb :asks, :locals => { :asks => Ask.where(:state => code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
-end
-
-get '/ask/:id' do |id|
-  erb :_ask, :locals => { :ask => Ask.find(id) }
-end
-
-delete 'ask/:id' do |id|
-  Ask.find(id).destroy
-end
-
-post 'ask/:id/fulfill' do |id|
-  #content_type :json
-  ask = Ask.find(id)
-  if params[:email]
-    ask.fulfiller = params[:email]
-    ask.state = code_of_state[:promised]
-  else
-    erb :error
-  end
-  #ask.to_json
-  redirect '/asks/pending'
-end
-
-get '/' do
-  erb :index
-end
-
-not_found do
-  erb :error
-end
-
-# attempt to login if needed. otherwise, noop.
+# delegate to dwolla to handle login
 get '/login' do
     if session[:dwolla_token].nil? then
         redirect DwollaClient.auth_url(REDIRECT_URL)
@@ -149,16 +24,78 @@ get '/login' do
     end
 end
 
-# remove the dwollo token from your session
+# clear session on logout
 get '/logout' do
-    session[:dwolla_token] = nil
+    session.clear
     redirect '/'
 end
+
+# show the submit form
+get '/ask' do
+  erb :_submit_ask, :locals => { :name => session[:name] }
+end
+
+# actually create the ask
+post '/ask' do
+    if not logged_in() then
+        redirect '/error'
+    else
+        ask = GrabTask.create(
+            :name => session[:name],
+            :creatorId => session[:dwolla_id],
+            :state => $code_of_state[:pending],
+            :description => params[:description],
+        )
+        redirect '/asks/pending'
+    end
+end
+
+# # actually create the ask
+# post '/solicit' do
+#   ask = GrabTask.create(
+#     :name => DwollaUser.name,
+#     :creatorId => DwollaUser.email,
+#     :state => code_of_state[:pending],
+#     :description => params[:description],
+#   )
+#   redirect '/asks/pending'
+# end
+
+get '/asks' do
+  erb :asks, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
+end
+
+get '/asks/pending' do
+  erb :asks, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
+end
+
+get '/ask/:id' do |id|
+  erb :_ask, :locals => { :ask => GrabTask.find(id) }
+end
+
+delete 'ask/:id' do |id|
+  GrabTask.find(id).destroy
+end
+
+post 'ask/:id/fulfill' do |id|
+    if not logged_in() then
+        redirect "/error"
+    else
+    # find the grabtask you're looking for
+        ask = GrabTask.find(id)
+
+        ask.fulfillerId = params[:dwolla_id]
+        ask.state = $code_of_state[:promised]
+
+        redirect '/asks/pending'
+    end
+end
+
 
 # Print the currently OAuth'd user's name
 # Testing only
 get '/user' do
-    if session[:dwolla_token].nil?
+    if not logged_in() then
         erb "Not logged in! <a href='/login'>Please login here</a>"
     else
         erb "Hi #{session[:name]} (id:#{session[:dwolla_id]})"
