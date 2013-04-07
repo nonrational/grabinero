@@ -55,7 +55,7 @@ post '/ask' do
             :description => params[:description],
             :location => params[:location]
         )
-        redirect '/asks/pending'
+        redirect '/'
     end
 end
 
@@ -96,7 +96,7 @@ post 'ask/:id/fulfill' do |id|
         ask.fulfillerId = params[:dwolla_id]
         ask.state = $code_of_state[:promised]
 
-        redirect '/asks/pending'
+        redirect '/'
     end
 end
 
