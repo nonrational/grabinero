@@ -32,4 +32,9 @@ $(document).ready(function(){
         e.preventDefault();
         window.open($(e.currentTarget).data('url'));
     });
+
+    $('.login-link').click(function(e){
+        e.preventDefault();
+        window.location = '/login';
+    });
 });
