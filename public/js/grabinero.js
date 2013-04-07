@@ -3,12 +3,13 @@ $(document).ready(function(){
     $('.askform').hide();
     $('.askopen').click( function() {
         $('.askform').slideToggle();
+        $('.solicitform').slideUp();
 
     });
     $('.solicitform').hide();
     $('.solicitopen').click( function() {
         $('.solicitform').slideToggle();
-
+        $('.askform').slideUp();
     });
 
     //show/hide action buttons
@@ -23,6 +24,7 @@ $(document).ready(function(){
     $('.requesteditems .promised .dropdown').hide();
     $('.requesteditems .promised .action').click( function(e) {
         $(e.currentTarget).parent().find('.dropdown').slideDown();
+        //console.log(e.currentTarget);
 
     });
 

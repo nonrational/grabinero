@@ -124,7 +124,10 @@ nav {
 	width: 38%;
 	padding: 5%;
 	float: left;
-	background-color: $light;
+	//background-color: $light;
+	@include retina-bg('form-bg', 'png', 15px, 1000px);
+	background-repeat: repeat-x;
+	background-position: bottom;
 	font-size: 30px;
 	&.askform button, &.solicitform button {
 		margin-top: 30px;
