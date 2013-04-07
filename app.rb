@@ -12,7 +12,11 @@ require './ruby/lib/dwolla-ruby.rb'
 require "./siteconfig.rb"
 
 get '/'   do
-    erb :index, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
+    if not logged_in() then
+        erb :brochure
+    else
+        erb :index, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
+    end
 end
 not_found do erb :error end
 
@@ -143,7 +147,7 @@ get '/dwolla/oauth' do
     token = DwollaClient.request_token(params['code'], REDIRECT_URL)
     DwollaUser = Dwolla::User.me(token).fetch
 
-    session[:name] = DwollaUser.name
+    session[:name] = DwollaUser.name.split.first
     session[:dwolla_id] = DwollaUser.id
     session[:dwolla_token] = token
 
