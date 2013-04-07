@@ -37,18 +37,13 @@ configure :development do
   set :public_folder, Proc.new { File.join(root, "public") }
   Mongoid.load!("mongoid.yml")
   Mongoid.configure do |config|
-    config.sessions = { 
+    config.sessions = {
       :default => {
         :hosts => ["localhost:27017"],
         :database => "grabinero"
       }
     }
   end
-end
-
-get '/testing' do
-    authUrl = DwollaClient.auth_url(REDIRECT_URL)
-    "To authorized, go <a target='_blank' href=\"#{authUrl}\">here</a>."
 end
 
 configure :production do
@@ -63,6 +58,34 @@ end
 before do
   puts '[Params]'
   p params
+end
+
+helpers do
+  def fulfill_url(ask)
+    "/ask/#{id}/fulfill"
+  end
+  def show_url(ask)
+    "/ask/show/#{id}"
+  end
+  def exists(username)
+    if User.where(:username => username).first
+      return true
+    else
+      return false
+    end
+  end
+
+  def login?
+    if session[:username].nil?
+      return false
+    else
+      return true
+    end
+  end
+
+  def username
+    return session[:username]
+  end
 end
 
 get '/ask' do
@@ -115,35 +138,6 @@ post 'ask/:id/fulfill' do |id|
   redirect '/asks/pending'
 end
 
-
-helpers do
-  def fulfill_url(ask)
-    "/ask/#{id}/fulfill"
-  end
-  def show_url(ask)
-    "/ask/show/#{id}"
-  end
-  def exists(username)
-    if User.where(:username => username).first
-      return true
-    else
-      return false
-    end
-  end
-
-  def login?
-    if session[:username].nil?
-      return false
-    else
-      return true
-    end
-  end
-
-  def username
-    return session[:username]
-  end
-end
-
 get '/' do
   erb :index
 end
@@ -152,40 +146,24 @@ not_found do
   erb :error
 end
 
-post '/signup' do
-  if not exists(params[:username])
-    new_id = User.all.last.id + 1
-    salt = BCrypt::Engine.generate_salt
-    hash = BCrypt::Engine.hash_secret(params[:password], salt)
-    User.create(id: new_id, username: params[:username], pass_salt: salt, pass_hash: hash)
-    session[:username] = params[:username]
-    redirect '/'
-  else
-    "this username exists already. go away"
-  end
-end
-
-post '/login' do
-  if exists(params[:username])
-    user = User.where(:username => params[:username]).first
-    if user.pass_hash == BCrypt::Engine.hash_secret(params[:password], user.pass_salt)
-      session[:username] = params[:username]
-      redirect '/dashboard'
+# attempt to login if needed. otherwise, noop.
+get '/login' do
+    if session[:dwolla_token].nil? then
+        redirect DwollaClient.auth_url(REDIRECT_URL)
     end
-  end
-  erb :error
 end
 
+# remove the dwollo token from your session
 get '/logout' do
-  session[:username] = nil
-  redirect '/'
+    session[:dwolla_token] = nil
+    redirect '/'
 end
 
 # Print the currently OAuth'd user's name
-get '/dwolla/demo' do
+get '/user' do
     DwollaUser = Dwolla::User.me(session[:dwolla_token])
     DwollaUser.fetch
-    "Name #{DwollaUser.name}"
+    erb "#{DwollaUser.name}"
 end
 
 #
@@ -195,15 +173,11 @@ get '/dwolla/oauth' do
     # if we have an error param OR we don't have an access token param...
     if !params[:error].nil? or params[:code].nil? then
         logger.error("Bad OAuth Request")
-        return "Oh Noes! Bad times. #{params}"
+        erb "Oh Noes! Bad times. Got: #{params}"
     end
 
-    code = params['code']
-    logger.info(code)
-    token = DwollaClient.request_token(code, REDIRECT_URL)
-    logger.info(token)
+    token = DwollaClient.request_token(params['code'], REDIRECT_URL)
     session[:dwolla_token] = token
-    "Session #{session[:dwolla_token]}"
 
     redirect "/"
 end
