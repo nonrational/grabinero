@@ -55,8 +55,6 @@ post '/ask' do
             :state => $code_of_state[:pending],
             :description => params[:description],
             :location => params[:location],
-            :responderName => "",
-            :responderId => ""
         )
         redirect '/'
     end
@@ -73,9 +71,7 @@ post '/solicit' do
             :state => $code_of_state[:pending],
             :location => params[:destination],
             :timespan => params[:time],
-            :ask => false,
-            :responderName => nil,
-            :responderId => nil
+            :ask => false
         )
         redirect '/'
     end
