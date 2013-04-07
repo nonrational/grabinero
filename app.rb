@@ -11,7 +11,9 @@ require 'pp'
 require './ruby/lib/dwolla-ruby.rb'
 require "./siteconfig.rb"
 
-get '/'   do erb :index end
+get '/'   do
+    erb :index, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
+end
 not_found do erb :error end
 
 DwollaClient = Dwolla::Client.new(APP_KEY, APP_SECRET)
