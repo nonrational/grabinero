@@ -1,10 +1,18 @@
 <div class="ask" id="<%= ask._id %>">
-  <p><%= ask.creatorName %>
-  	<span class="conjunction">wants</span>
-  	<%= ask.description %>
-	<% unless ask.location.nil? or ask.location.empty? %>
-  	<span class="conjunction">from</span>
-  	<%= ask.location %>
-  	<% end %>
-  	</p>
+    <p><%= ask.creatorName %>
+    <% if ask.ask then %>
+        <span class="conjunction">wants</span>
+        <%= ask.description.nil? or ask.description.empty? ? "?" : ask.description %>
+        <% unless ask.location.nil? or ask.location.empty? %>
+            <span class="conjunction">from</span><%= ask.location %>
+        <% end %>
+    <% else %>
+        <span class="conjunction">is going to</span>
+        <%= ask.location.nil? or ask.location.empty? ? "?" : ask.location %>
+        <% unless ask.timespan.nil? or ask.timespan.empty? %>
+            <span class="conjunction">in</span><%= ask.timespan %>
+        <% end %>
+    <% end %>
+    </p>
+
 </div>

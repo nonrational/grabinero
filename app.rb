@@ -59,32 +59,38 @@ post '/ask' do
     end
 end
 
-# # actually create the ask
-# post '/solicit' do
-#   ask = GrabTask.create(
-#     :name => DwollaUser.name,
-#     :creatorId => DwollaUser.email,
-#     :state => code_of_state[:pending],
-#     :description => params[:description],
-#   )
-#   redirect '/asks/pending'
+# actually create the ask
+post '/solicit' do
+  if not logged_in() then
+        redirect '/error'
+    else
+        ask = GrabTask.create(
+            :creatorName => session[:name],
+            :creatorId => session[:dwolla_id],
+            :state => $code_of_state[:pending],
+            :location => params[:destination],
+            :timespan => params[:time],
+            :ask => false
+        )
+        redirect '/'
+    end
+end
+
+# get '/asks' do
+#   erb :asks, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
 # end
 
-get '/asks' do
-  erb :asks, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
-end
+# get '/asks/pending' do
+#   erb :asks, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
+# end
 
-get '/asks/pending' do
-  erb :asks, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
-end
+# get '/ask/:id' do |id|
+#   erb :_ask, :locals => { :ask => GrabTask.find(id) }
+# end
 
-get '/ask/:id' do |id|
-  erb :_ask, :locals => { :ask => GrabTask.find(id) }
-end
-
-delete 'ask/:id' do |id|
-  GrabTask.find(id).destroy
-end
+# delete 'ask/:id' do |id|
+#   GrabTask.find(id).destroy
+# end
 
 post 'ask/:id/fulfill' do |id|
     if not logged_in() then

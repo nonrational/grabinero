@@ -11,9 +11,10 @@ class GrabTask
     field :responderId, type: String
     field :state, type: Integer
     field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
-    field :item, type: String
+    field :description, type: String
     field :location, type:String
     field :timespan, type: String
+    field :ask, type: Boolean, default: -> { true }
 end
 
 configure :development do
