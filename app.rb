@@ -149,10 +149,11 @@ post '/ask/*/fulfill' do
         # find the grabtask you're looking for
         ask = GrabTask.find(id).first
         begin
-            txnId = Dwolla::User.me(session[:dwolla_token]).request_money_from(ask.creatorId, amt, pin)
+            amount = (amt.to_f + 1.0);
+            txnId = Dwolla::User.me(session[:dwolla_token]).request_money_from(ask.creatorId, amount, pin)
             ask.update_attribute(:state, $code_of_state[:fulfilled])
             ask.update_attribute(:transactionId, txnId)
-            ask.update_attribute(:amount, amt)
+            ask.update_attribute(:amount, amount)
             ask.update_attribute(:fulfilledDateTime, DateTime.now)
             ask.save
             redirect '/'
