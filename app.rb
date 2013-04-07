@@ -41,10 +41,11 @@ post '/ask' do
         redirect '/error'
     else
         ask = GrabTask.create(
-            :name => session[:name],
+            :creatorName => session[:name],
             :creatorId => session[:dwolla_id],
             :state => $code_of_state[:pending],
             :description => params[:description],
+            :location => params[:location]
         )
         redirect '/asks/pending'
     end

@@ -14,8 +14,9 @@ $code_of_state = Hash[$state.map.with_index.to_a]
 
 class GrabTask
     include Mongoid::Document
-    field :name, type: String
+    field :creatorName, type: String
     field :creatorId, type: String
+    field :responderName, type: String
     field :responderId, type: String
     field :state, type: Integer
     field :createdDateTime, type: DateTime, default: ->{ DateTime.now }
