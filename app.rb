@@ -11,7 +11,7 @@ require 'pp'
 require './ruby/lib/dwolla-ruby.rb'
 require "./siteconfig.rb"
 
-Mongoid.load!("/config/mongoid.yml")
+Mongoid.load!("config/mongoid.yml")
 
 get '/'   do
     if not logged_in() then
