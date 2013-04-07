@@ -15,7 +15,7 @@ get '/'   do
     if not logged_in() then
         erb :brochure
     else
-        erb :index, :locals => { :asks => GrabTask.order_by([[:createdDateTime, :desc]]) }
+        erb :index, :locals => { :asks => GrabTask.where(:state => $code_of_state[:pending]).order_by([[:createdDateTime, :desc]]) }
     end
 end
 not_found do erb :error end

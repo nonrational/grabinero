@@ -4,7 +4,7 @@
         <th>Up for Grabs</th>
     </tr>
   <% asks.each do |ask| %>
-    <tr>
+    <tr class="<%= $state[ask.state] %>">
         <td><%= erb :_ask, :layout => false, :locals => { :ask => ask } %></td>
     </tr>
   <% end %>
