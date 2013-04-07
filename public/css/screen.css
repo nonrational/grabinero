@@ -68,24 +68,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* Font Imports */
 @font-face {
   font-family: 'ModernPictogramsNormal';
-  src: url("../../public/fonts/modernpics-webfont.eot");
-  src: url("../../public/fonts/modernpics-webfont.eot?#iefix") format("embedded-opentype"), url("../../public/fonts/modernpics-webfont.svg#ModernPictogramsNormal") format("svg"), url("../../public/fonts/modernpics-webfont.woff") format("woff"), url("../../public/fonts/modernpics-webfont.ttf") format("truetype");
+  src: url("/fonts/modernpics-webfont.eot");
+  src: url("/fonts/modernpics-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/modernpics-webfont.svg#ModernPictogramsNormal") format("svg"), url("/fonts/modernpics-webfont.woff") format("woff"), url("/fonts/modernpics-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'MuseoSlab';
-  src: url("../../public/fonts/museo_slab_300-webfont.eot");
-  src: url("../../public/fonts/museo_slab_300-webfont.eot?#iefix") format("embedded-opentype"), url("../../public/fonts/museo_slab_300-webfont.ttf") format("truetype");
+  src: url("/fonts/museo_slab_300-webfont.eot");
+  src: url("/fonts/museo_slab_300-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/museo_slab_300-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'MuseoSlab';
-  src: url("../../public/fonts/museo_slab_500-webfont.eot");
-  src: url("../../public/fonts/museo_slab_500-webfont.eot?#iefix") format("embedded-opentype"), url("../../public/fonts/museo_slab_500-webfont.ttf") format("truetype");
+  src: url("/fonts/museo_slab_500-webfont.eot");
+  src: url("/fonts/museo_slab_500-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/museo_slab_500-webfont.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
@@ -208,7 +208,7 @@ h1.logo {
   overflow: hidden;
   text-indent: -9000px;
   display: block;
-  background-image: url("../../public/images/grab-logo.png");
+  background-image: url("/images/grab-logo.png");
   background-repeat: no-repeat;
   width: 450px;
   height: 123px;
@@ -217,7 +217,7 @@ h1.logo {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 150dpi), only screen and (min-resolution: 1.5dppx) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003157}}
   h1.logo {
-    background-image: url("../../public/images/grab-logo@2x.png");
+    background-image: url("/images/grab-logo@2x.png");
     background-size: cover;
   }
 }
@@ -287,7 +287,7 @@ nav:hover {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003102}}
 nav ul {
-  background-image: url("../../public/images/divider.png");
+  background-image: url("/images/divider.png");
   background-repeat: no-repeat;
   background-size: 42px 93px !important;
   background-position: center center;
@@ -295,7 +295,7 @@ nav ul {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 150dpi), only screen and (min-resolution: 1.5dppx) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003157}}
   nav ul {
-    background-image: url("../../public/images/divider@2x.png");
+    background-image: url("/images/divider@2x.png");
     background-size: cover;
   }
 }
