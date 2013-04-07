@@ -93,7 +93,7 @@ end
 #   GrabTask.find(id).destroy
 # end
 
-post '/ask/*/fulfill' do
+post '/ask/*/promise' do
     id = params[:splat]
 
     if not logged_in() then
@@ -104,7 +104,7 @@ post '/ask/*/fulfill' do
         # pp ask
         ask.update_attribute(:responderName, session[:name])
         ask.update_attribute(:responderId, session[:dwolla_id])
-        ask.update_attribute(:state, $code_of_state[:fulfilled])
+        ask.update_attribute(:state, $code_of_state[:promised])
         ask.save
         redirect '/'
     end
