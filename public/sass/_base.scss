@@ -2,6 +2,7 @@
 
 $app-width: 978px;
 $container-padding: 0px;
+$gutter-width: percentage(30px/978px);
 $main: #002457; //main blue
 $main-lt: #00508a; //lt blue
 $accent: #feae31; //main yellow
@@ -132,15 +133,12 @@ $fontstack: 'MuseoSlab', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 @mixin input-fields () {
-	font-family: $fontstack;
-    //@include basic-gradient (#ececec, #fff);
-    //@include border();
-    //@include rounded-corner(1px);
+  	font-family: $fontstack;
     border: none;
     border-bottom: 1px solid $dkgray;
+    float: left;
     outline: none;
     color: $dkgray;
-    font-size: 16px;
     padding: 3px 10px;
     text-align: center;
     margin: 5px 0;
@@ -163,8 +161,12 @@ $fontstack: 'MuseoSlab', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     & {
       background-image: url('#{$img-dir}' + $file + '@2x.' + $type);
       //-webkit-background-size: $width $height;
-              background-size: $width $height;
-              //background-size: cover;
+              //background-size: $width $height;
+              background-size: 100%;
     }
   }
+}
+
+@mixin breakpoint($width) {
+    @media (max-width: $width) { @content; }
 }

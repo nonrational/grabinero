@@ -119,7 +119,16 @@ body {
   text-shadow: 0 1px 0 white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000336}}
+.wrapper {
+  width: 90%;
+  max-width: 1026px;
+  margin: 50px auto;
+  padding: 0 5%;
+  position: relative;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000344}}
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   margin-top: 1em;
@@ -127,45 +136,39 @@ h1, h2, h3, h4, h5, h6 {
   color: #333333;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000350}}
 strong {
   font-weight: bold;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000347}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000354}}
 a {
   color: #002457;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000357}}
 a:hover {
   color: #00508a;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000355}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000362}}
 input[type="text"], input[type="email"], input[type="password"], textarea {
   font-family: "MuseoSlab", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   border: none;
   border-bottom: 1px solid #333333;
+  float: left;
   outline: none;
   color: #333333;
-  font-size: 16px;
   padding: 3px 10px;
   text-align: center;
   margin: 5px 0;
-  font-size: 30px;
-  display: inline-block;
-  *display: inline;
-  /* IE inline-block hack */
-  zoom: 1;
-  /* IE inline-block hack */
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003146}}
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
   border-bottom: 1px solid #feae31;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000361}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000368}}
 button {
   color: #002457;
   border: none;
@@ -196,11 +199,11 @@ button {
   text-shadow: 0 1px 0 white;
   padding: 5px 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003126}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003127}}
 button:hover {
   color: #00508a;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003129}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003130}}
 button.disabled {
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEEEEEE', endColorstr='#FF999999');
@@ -210,7 +213,7 @@ button.disabled {
   background-image: -o-linear-gradient(#eeeeee, #999999);
   background-image: linear-gradient(#eeeeee, #999999);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000367}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000374}}
 button:active {
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFEAE31', endColorstr='#FFEFE457');
@@ -221,22 +224,22 @@ button:active {
   background-image: linear-gradient(#feae31, #efe457);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000379}}
 ul, ol {
   margin-left: 50px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000375}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000382}}
 ul {
   list-style: disc;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000378}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000385}}
 ol {
   list-style: decimal;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000384}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000391}}
 h1.logo {
   overflow: hidden;
   text-indent: -9000px;
@@ -248,14 +251,28 @@ h1.logo {
   margin: 0 auto;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 150dpi), only screen and (min-resolution: 1.5dppx) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003163}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003161}}
   h1.logo {
     background-image: url("/images/grab-logo@2x.png");
-    background-size: 450px 123px;
+    background-size: 100%;
+  }
+}
+@media (max-width: 800px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000391}}
+  h1.logo {
+    width: 400px;
+    height: 109px;
+  }
+}
+@media (max-width: 950px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000391}}
+  h1.logo {
+    width: 350px;
+    height: 96px;
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000392}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003101}}
 .auth {
   color: white;
   text-shadow: 0 -1px 0 #333333;
@@ -264,11 +281,11 @@ h1.logo {
   text-align: center;
   margin-bottom: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000388}}
 .auth a:hover, button:hover .auth {
   color: #bdd8ff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\0000397}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003106}}
 .auth form {
   display: inline-block;
   *display: inline;
@@ -276,7 +293,7 @@ h1.logo {
   zoom: 1;
   /* IE inline-block hack */
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003100}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003109}}
 .auth button {
   margin-left: 20px;
   *zoom: 1;
@@ -290,12 +307,12 @@ h1.logo {
   text-shadow: 0 -1px 0 #333333;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000388}}
 .auth button a:hover, button:hover .auth button {
   color: #bdd8ff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003107}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003116}}
 nav {
   color: #002457;
   border: none;
@@ -323,18 +340,17 @@ nav {
   position: relative;
   z-index: 50;
   height: 80px;
-  padding: 30px;
+  padding: 3.06748%;
   width: 100%;
-  margin-left: -30px;
+  margin-left: -3.06748%;
   font-size: 36px;
-  line-height: 80px;
-  vertical-align: middle;
+  text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003126}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003127}}
 nav:hover {
   color: #00508a;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003129}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003130}}
 nav.disabled {
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEEEEEE', endColorstr='#FF999999');
@@ -344,45 +360,105 @@ nav.disabled {
   background-image: -o-linear-gradient(#eeeeee, #999999);
   background-image: linear-gradient(#eeeeee, #999999);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003119}}
-nav ul {
-  background-image: url("/images/divider.png");
-  background-repeat: no-repeat;
-  background-size: 42px 93px !important;
-  background-position: center center;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 150dpi), only screen and (min-resolution: 1.5dppx) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003163}}
-  nav ul {
-    background-image: url("/images/divider@2x.png");
-    background-size: 42px 93px;
+@media (max-width: 950px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003116}}
+  nav {
+    font-size: 32px;
+    height: 75px;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003124}}
+@media (max-width: 800px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003116}}
+  nav {
+    font-size: 28px;
+    height: 70px;
+  }
+}
+@media (max-width: 650px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003116}}
+  nav {
+    font-size: 24px;
+    height: 65px;
+  }
+}
+@media (max-width: 550px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003116}}
+  nav {
+    font-size: 32px;
+    height: 130px;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003133}}
+nav ul {
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/divider.png");
+  background-repeat: no-repeat;
+  background-size: 42px 23px !important;
+  background-position: center center;
+  margin: 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 150dpi), only screen and (min-resolution: 1.5dppx) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003161}}
+  nav ul {
+    background-image: url("/images/divider@2x.png");
+    background-size: 100%;
+  }
+}
+@media (max-width: 800px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003133}}
+  nav ul {
+    background-size: 31px 17px !important;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003144}}
 nav li {
   display: inline-block;
   *display: inline;
   /* IE inline-block hack */
   zoom: 1;
   /* IE inline-block hack */
-  text-align: center;
+  vertical-align: middle;
   height: 100%;
-  width: 48%;
+  width: 49%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003129}}
+@media (max-width: 550px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003144}}
+  nav li {
+    display: block;
+    width: 100%;
+    height: 50%;
+    padding: 0 3%;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003150}}
 nav li a {
+  vertical-align: middle;
+  text-align: center;
   width: 100%;
   height: 100%;
   display: block;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003157}}
+nav li a:before {
+  content: '';
+  vertical-align: middle;
+  display: inline-block;
+  *display: inline;
+  /* IE inline-block hack */
+  zoom: 1;
+  /* IE inline-block hack */
+  height: 100%;
+}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003137}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003166}}
 .dropdown {
   width: 38%;
   padding: 5%;
   display: none;
   background-image: url("/images/form-bg.png");
   background-repeat: no-repeat;
+  background-size: 15px 1000px !important;
   background-color: rgba(47, 102, 142, 0.5);
   background-repeat: repeat-x;
   background-position: bottom;
@@ -394,43 +470,50 @@ nav li a {
   z-index: 30;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 150dpi), only screen and (min-resolution: 1.5dppx) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003163}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\00003161}}
   .dropdown {
     background-image: url("/images/form-bg@2x.png");
-    background-size: 15px 1000px;
+    background-size: 100%;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003149}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003179}}
+.dropdown p {
+  float: left;
+  clear: both;
+  line-height: 50px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003186}}
 .dropdown.askform button, .dropdown.solicitform button {
   margin-top: 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003152}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003189}}
 .dropdown.solicitform {
   right: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003156}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003193}}
 .dropdown .optional {
   color: #999999;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003158}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003195}}
 input .dropdown .optional {
   border-bottom: 1px solid #999999;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003162}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003199}}
 .dropdown button {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  clear: both;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003207}}
 .fineprint {
   font-size: 16px;
   line-height: 1.5em;
   margin: 10px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003175}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003213}}
 table, .requesteditems {
   background-color: white;
   line-height: 1.25em;
@@ -440,9 +523,27 @@ table, .requesteditems {
   -moz-box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003181}}
+@media (max-width: 950px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003213}}
+  table, .requesteditems {
+    font-size: 32px;
+  }
+}
+@media (max-width: 800px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003213}}
+  table, .requesteditems {
+    font-size: 28px;
+  }
+}
+@media (max-width: 650px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003213}}
+  table, .requesteditems {
+    font-size: 24px;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003222}}
 table th, .requesteditems th {
-  padding: 10px 50px;
+  padding: 1.53374% 6.13497%;
   text-align: center;
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF00508A', endColorstr='#FF002457');
@@ -460,18 +561,27 @@ table th, .requesteditems th {
   text-shadow: 0 -1px 0 #333333;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000388}}
 table th a:hover, button:hover table th, .requesteditems th a:hover, button:hover .requesteditems th {
   color: #bdd8ff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003188}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003229}}
 table td, .requesteditems td {
   cursor: pointer;
-  padding: 25px 50px;
+  padding: 3.06748% 6.13497%;
   border-bottom: 1px solid #999999;
   position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003193}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003234}}
+table td p, .requesteditems td p {
+  display: inline-block;
+  *display: inline;
+  /* IE inline-block hack */
+  zoom: 1;
+  /* IE inline-block hack */
+  white-space: nowrap;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003238}}
 table td .conjunction, .requesteditems td .conjunction {
   color: #999999;
   display: inline-block;
@@ -488,7 +598,7 @@ table td .conjunction, .requesteditems td .conjunction {
   vertical-align: middle;
   padding: 0 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003202}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003247}}
 table button, .requesteditems button {
   position: absolute;
   top: 30%;
@@ -497,7 +607,7 @@ table button, .requesteditems button {
   z-index: 10;
   font-size: .55556em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003210}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003255}}
 table .dropdown, .requesteditems .dropdown {
   position: absolute;
   z-index: 20;
@@ -508,25 +618,25 @@ table .dropdown, .requesteditems .dropdown {
   -moz-box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25), inset 0px 25px 40px -20px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25), inset 0px 25px 40px -20px rgba(0, 0, 0, 0.15);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003217}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003262}}
 table .dropdown button, .requesteditems .dropdown button {
   z-index: 30;
   position: static;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003222}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003267}}
 table tr.pending:hover, .requesteditems tr.pending:hover {
   background-color: #fdde6e;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003224}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003269}}
 table tr.pending:hover p, .requesteditems tr.pending:hover p {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003228}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003273}}
 table tr.promised, .requesteditems tr.promised {
   background-color: #f0f6ff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003233}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003278}}
 table tr.promised .action, .requesteditems tr.promised .action {
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF00508A', endColorstr='#FF002457');
@@ -539,11 +649,11 @@ table tr.promised .action, .requesteditems tr.promised .action {
   text-shadow: 0 -1px 0 #333333;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000388}}
 table tr.promised .action a:hover, button:hover table tr.promised .action, .requesteditems tr.promised .action a:hover, button:hover .requesteditems tr.promised .action {
   color: #bdd8ff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003236}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003281}}
 table tr.promised .action.disabled, .requesteditems tr.promised .action.disabled {
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEEEEEE', endColorstr='#FF999999');
@@ -553,45 +663,45 @@ table tr.promised .action.disabled, .requesteditems tr.promised .action.disabled
   background-image: -o-linear-gradient(#eeeeee, #999999);
   background-image: linear-gradient(#eeeeee, #999999);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003241}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003286}}
 table tr.fulfilled, .requesteditems tr.fulfilled {
   background-color: #eeeeee;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003243}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003288}}
 table tr.fulfilled p, .requesteditems tr.fulfilled p {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=35);
   opacity: 0.35;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003249}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003294}}
 .fadeout {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003253}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003298}}
 .brochure {
   line-height: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003255}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003300}}
 .brochure td {
   width: 50%;
   vertical-align: top;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003258}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003303}}
 .brochure td h2 {
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003261}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003306}}
 .brochure td p {
   font-size: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003264}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003309}}
 .brochure td ol {
   font-size: 16px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003270}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003315}}
 footer {
   text-align: center;
   color: white;
@@ -600,15 +710,21 @@ footer {
   position: relative;
   z-index: 1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/_base\.scss}line{font-family:\0000388}}
 footer a:hover, button:hover footer {
   color: #bdd8ff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003275}}
+@media (max-width: 900px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003315}}
+  footer {
+    font-size: 14px;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003321}}
 footer a {
   color: white;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003277}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Sarah\/Sites\/grabinero\/public\/sass\/screen\.scss}line{font-family:\00003323}}
 footer a:hover {
   color: #f0f6ff;
 }

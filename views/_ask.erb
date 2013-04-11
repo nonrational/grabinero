@@ -1,15 +1,15 @@
-<p><%= ask.creatorName %>
+<p><%= ask.creatorName %></p>
     <% if ask.ask then %>
         <span class="conjunction">wants</span>
-        <%= ask.description.nil? or ask.description.empty? ? "?" : ask.description %>
+        <p><%= ask.description.nil? or ask.description.empty? ? "?" : ask.description %></p>
         <% unless ask.location.nil? or ask.location.empty? %>
-            <span class="conjunction">from</span><%= ask.location %>
+            <span class="conjunction">from</span><p><%= ask.location %></p>
         <% end %>
     <% else %>
         <span class="conjunction">is going to</span>
-        <%= ask.location.nil? or ask.location.empty? ? "?" : ask.location %>
+        <p><%= ask.location.nil? or ask.location.empty? ? "?" : ask.location %></p>
         <% unless ask.timespan.nil? or ask.timespan.empty? %>
-            <span class="conjunction">in</span><%= ask.timespan %>
+            <span class="conjunction">in</span><p><%= ask.timespan %></p>
         <% end %>
     <% end %>
 </p>

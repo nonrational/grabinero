@@ -23,7 +23,6 @@ body {
 	@include background-image(linear-gradient(bottom, $main 0%, $main-lt 100%)); // layer fill content
 	min-width: 320px;
     //overflow: hidden;
-	//margin: 50px 0;
 	padding: 0 0 300px;
 	font-family: $fontstack;
 	font-weight: normal;
@@ -32,6 +31,14 @@ body {
 	line-height: 1.5em;
 	color:#333;
 	text-shadow: 0 1px 0 $light;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1026px;
+    margin: 50px auto;
+    padding: 0 5%;
+    position: relative;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -54,8 +61,8 @@ a {
 
 input[type="text"], input[type="email"], input[type="password"], textarea {
 	@include input-fields;
-	font-size: 30px;
-	@include inline-hack;
+	//font-size: 30px;
+	//@include inline-hack;
 }
 
 button {
@@ -87,6 +94,8 @@ h1.logo {
 	width: 450px;
 	height: 123px;
 	margin: 0 auto;
+	@include breakpoint(800px) { width: 400px; height: 109px; }
+	@include breakpoint(950px) { width: 350px; height: 96px; }
 }
 
 .auth {
@@ -110,26 +119,46 @@ nav {
 	position: relative;
 	z-index: 50;
 	height: 80px;
-	padding: 30px;
+	padding: $gutter-width;
 	width: 100%;
-	margin-left: -30px;
+	margin-left: -$gutter-width;
 	font-size: 36px;
-	line-height: 80px;
-	vertical-align: middle;
+	//display: table;
+	//line-height: 80px;
+	text-align: center;
+	@include breakpoint(950px) { font-size: 32px; height: 75px; };
+	@include breakpoint(800px) { font-size: 28px; height: 70px; };
+	@include breakpoint(650px) { font-size: 24px; height: 65px; };
+	@include breakpoint(550px) { font-size: 32px; height: 130px; };
 	ul {
-		@include retina-bg('divider', 'png', 42px, 93px);
-		background-size: 42px 93px !important;
+		//display: inline-table;
+		//vertical-align: middle;
+		width: 100%;
+		height: 100%;
+		@include retina-bg('divider', 'png', 42px, 23px);
+		background-size: 42px 23px !important;
+		@include breakpoint(800px) { background-size: 31px 17px !important; }
 		background-position: center center;
+		margin: 0;
 	}
 	li {
 		@include inline-hack;
-		text-align: center;
+		vertical-align: middle;
 		height: 100%;
-		width: 48%;
+		width: 49%;
+		@include breakpoint(550px) { display: block; width: 100%; height: 50%; padding: 0 3%; };
 		a {
+			vertical-align: middle;
+			text-align: center;
 			width: 100%;
 			height: 100%;
 			display: block;
+		}
+		a:before {
+			content: '';
+			vertical-align: middle;
+			@include inline-hack;
+			height: 100%;
 		}
 	}
 }
@@ -139,6 +168,7 @@ nav {
 	padding: 5%;
 	display: none;
 	@include retina-bg('form-bg', 'png', 15px, 1000px);
+	background-size: 15px 1000px !important;
 	background-color: rgba(desaturate(lighten($main-lt, 10%), 50%), .5);
 	background-repeat: repeat-x;
 	background-position: bottom;
@@ -146,6 +176,13 @@ nav {
 	@include box-shadow(0px 5px 30px 0px rgba(0, 0, 0, .25));
 	position: absolute;
 	z-index: 30;
+	p {
+		float: left;
+		clear: both;
+		line-height: 50px;
+		//@include inline-hack;
+		//height: 30px;
+	}
 	&.askform button, &.solicitform button {
 		margin-top: 30px;
 	}
@@ -163,6 +200,7 @@ nav {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
+		clear: both;
 	}
 }
 
@@ -178,8 +216,11 @@ table, .requesteditems {
 	font-size: 36px;
 	width: 100%;
 	@include box-shadow(0px 5px 30px 0px rgba(0, 0, 0, .25));
+	@include breakpoint(950px) { font-size: 32px; }
+	@include breakpoint(800px) { font-size: 28px; }
+	@include breakpoint(650px) { font-size: 24px; }
 	th {
-		padding: 10px 50px;
+		padding: ($gutter-width / 2) ($gutter-width * 2);
 		text-align: center;
 		@include basic-gradient ($main-lt, $main);
 		@include small-caps;
@@ -187,9 +228,13 @@ table, .requesteditems {
 	}
 	td {
 		cursor: pointer;
-		padding: 25px 50px;
+		padding: $gutter-width ($gutter-width * 2);
 		border-bottom: 1px solid $mdgray;
 		position: relative;
+		p {
+			@include inline-hack;
+			white-space: nowrap;
+		}
 		.conjunction {
 			color: $mdgray;
 			@include inline-hack;
@@ -272,6 +317,7 @@ footer {
 	@include knockout-text;
 	position: relative;
 	z-index: 1;
+	@include breakpoint(900px) { font-size: 14px; }
 	a {
 		color: $light;
 		&:hover {
